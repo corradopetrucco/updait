@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="UPDAIT, Università di Padova: docenti che progettano tutor IA disciplinari.">
+<title>UPDAIT, sito di progetto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400&display=swap">
+<style>
+/* Layout: bianco e ardesia come il wizard, un solo accento rosso; barra sottile rossa in alto; colonna di lettura ~68ch; sezioni alternate bianco / grigio freddo come in Google Sites */
+:root{
+  --bg:#ffffff; --alt:#f3f5f8; --ink:#0f172a; --text:#1e293b; --muted:#526075; --line:#e2e8f0;
+  --accent:#9b0014; --accent-ink:#ffffff; --accent-soft:#fdf2f3; --good:#0f6b4a; --good-soft:#ecf7f2;
+  --code-bg:#0f172a; --code-fg:#e2e8f0; --tag:#2b5aa8; --tag-soft:#eaf0fb;
+  --sans:"Roboto", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --mono:"Roboto Mono", "SFMono-Regular", Consolas, "Courier New", monospace;
+  --w:68ch;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e131b; --alt:#141b25; --ink:#f1f5f9; --text:#dbe3ec; --muted:#9aa8ba; --line:#263142;
+  --accent:#f0727f; --accent-ink:#1a0a0c; --accent-soft:#2a1519; --good:#6fd1a6; --good-soft:#12261e;
+  --code-bg:#070b11; --code-fg:#dbe3ec; --tag:#8fb2ec; --tag-soft:#16233a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e131b; --alt:#141b25; --ink:#f1f5f9; --text:#dbe3ec; --muted:#9aa8ba; --line:#263142;
+  --accent:#f0727f; --accent-ink:#1a0a0c; --accent-soft:#2a1519; --good:#6fd1a6; --good-soft:#12261e;
+  --code-bg:#070b11; --code-fg:#dbe3ec; --tag:#8fb2ec; --tag-soft:#16233a; color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}img{max-width:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.65;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* Barra superiore */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-top:3px solid var(--accent);border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;gap:12px 20px;min-height:62px;flex-wrap:wrap;padding-block:6px}
+.brand{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);line-height:1.05}
+.brand .w{font-weight:300;font-size:1.45rem;letter-spacing:.02em}
+.brand .s{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.brand .s b,.acro b{color:var(--accent);font-weight:700}
+nav.main{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto;align-items:center}
+nav.main a,nav.main .navbtn{font:500 .9rem var(--sans);color:var(--muted);text-decoration:none;padding:9px 12px;border-radius:4px;background:none;border:0;cursor:pointer;letter-spacing:.01em}
+nav.main a:hover,nav.main .navbtn:hover{color:var(--ink);background:var(--alt)}
+nav.main a[aria-current="page"],nav.main .has-sub.current>.navbtn{color:var(--accent)}
+.has-sub{position:relative}
+.sub{position:absolute;top:100%;left:0;min-width:270px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px;box-shadow:0 10px 30px rgba(15,23,42,.12);display:none}
+.has-sub:hover .sub,.has-sub:focus-within .sub{display:block}
+.sub a{display:block;padding:8px 10px}
+.tools{display:flex;gap:8px;align-items:center;order:3}
+.toggle{font:500 .78rem var(--sans);border:1px solid var(--line);background:var(--bg);color:var(--muted);border-radius:4px;padding:6px 10px;cursor:pointer}
+.toggle[aria-pressed="true"]{border-color:var(--tag);color:var(--tag);background:var(--tag-soft)}
+#menubtn{display:none}
+@media (max-width:900px){
+  #menubtn{display:inline-block}
+  .tools{margin-left:auto}
+  nav.main{display:none;width:100%;flex-direction:column;align-items:stretch;margin-left:0;padding-bottom:10px;order:4}
+  nav.main.open{display:flex}
+  .sub{position:static;display:block;box-shadow:none;border:0;padding:0 0 0 14px;min-width:0}
+}
+
+/* Etichette dei blocchi Google Sites */
+.gs{display:none;font:500 .74rem var(--sans);letter-spacing:.04em;color:var(--tag);background:var(--tag-soft);border:1px dashed var(--tag);border-radius:3px;padding:2px 8px;margin-bottom:10px;width:fit-content}
+body.show-gs .gs{display:block}
+
+/* Sezioni */
+.sec{padding-block:48px}
+.sec.alt{background:var(--alt)}
+.sec:not(.alt) + .sec:not(.alt){padding-top:8px}
+.col{max-width:var(--w)}
+h1,h2,h3{color:var(--ink);text-wrap:balance}
+h1{font-weight:300;font-size:clamp(2.1rem,4.4vw,3rem);line-height:1.15;margin:0 0 14px;letter-spacing:-.01em;max-width:24ch}
+h2{font-weight:400;font-size:1.6rem;line-height:1.25;margin:0 0 14px}
+h3{font-weight:500;font-size:1.1rem;margin:0 0 6px}
+p{margin:0 0 14px}
+.eyebrow{font:500 .8rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+.lead{font-size:1.18rem;font-weight:300;color:var(--muted);max-width:var(--w);margin:0}
+.summary{font-size:1.08rem;color:var(--ink);border-left:3px solid var(--accent);padding-left:16px;max-width:var(--w);margin:0 0 6px}
+.muted{color:var(--muted)} .small{font-size:.9rem}
+ul.plain{margin:0 0 14px;padding-left:1.2em} ul.plain li{margin-bottom:6px}
+.pagehead{padding-block:52px 40px;border-bottom:1px solid var(--line)}
+
+/* Hero della home */
+.hero{padding-block:72px 64px;text-align:center;border-bottom:1px solid var(--line)}
+.hero .ver{display:inline-block;font:500 .76rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:5px 14px;margin-bottom:22px}
+.hero .word{font-weight:300;font-size:clamp(3.4rem,10vw,5.6rem);line-height:1;color:var(--ink);margin:0 0 14px;letter-spacing:.01em}
+.acro{font-weight:300;font-size:clamp(.82rem,2.3vw,1.18rem);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:0 0 26px}
+.hero .claim{font-size:clamp(1.15rem,2.4vw,1.45rem);font-weight:300;color:var(--ink);max-width:40ch;margin:0 auto}
+.hero .btns{justify-content:center}
+
+/* Pulsanti */
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;align-items:center}
+.btn{display:inline-block;font:500 .86rem var(--sans);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:13px 22px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:transparent}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn:hover{filter:brightness(1.1)}
+.textlink{font-weight:500;text-decoration:none}
+.textlink:hover{text-decoration:underline}
+
+/* Griglie */
+.grid{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:36px;align-items:start}
+.item{min-width:0}
+.item .k{font:500 .78rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+.item p{color:var(--muted);margin:0}
+a.item{text-decoration:none;color:inherit;display:block;padding-top:16px;border-top:1px solid var(--line)}
+a.item:hover h3{color:var(--accent)}
+a.item .go{display:inline-block;margin-top:10px;font-weight:500;color:var(--accent);font-size:.92rem}
+.rule-top{padding-top:16px;border-top:1px solid var(--ink)}
+
+/* Cifre */
+.figs{display:grid;gap:0;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fig{padding:20px 18px 18px 0}
+.fig b{display:block;font-weight:300;font-size:2.4rem;line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums}
+.fig .tagline{display:inline-block;font:500 .72rem var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:3px;margin:6px 0 4px}
+.fig .up{color:var(--good);background:var(--good-soft)} .fig .down{color:var(--accent);background:var(--accent-soft)}
+.fig span.d{display:block;font-size:.92rem;color:var(--muted)}
+
+/* Testo comprimibile */
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+.acc{margin-bottom:14px}
+summary{cursor:pointer;padding:16px 0;font-weight:500;font-size:1.05rem;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent);font-size:1.4rem;font-weight:300;line-height:1}
+details[open] summary::after{content:"\2212"}
+summary .sub2{display:block;font-weight:400;font-size:.9rem;color:var(--muted);margin-top:2px}
+details>div{padding:0 0 14px}
+.rr{display:grid;gap:6px 20px;grid-template-columns:150px 1fr;font-size:.98rem}
+.rr dt{font:500 .76rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+.rr dd{margin:0 0 8px}
+@media (max-width:560px){.rr{grid-template-columns:1fr}.rr dd{margin-bottom:12px}}
+
+/* Figure (screenshot) */
+figure{margin:0}
+figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+figcaption{font-size:.86rem;color:var(--muted);margin-top:8px}
+.shot-sm{max-width:560px}
+
+/* Esempi di output */
+.code{background:var(--code-bg);color:var(--code-fg);font:400 .82rem/1.6 var(--mono);border-radius:8px;padding:18px 20px;overflow-x:auto;white-space:pre-wrap;margin:0}
+.code .c{color:#94a3b8}
+.paper{border:1px solid var(--line);border-radius:8px;padding:16px 18px;font-size:.95rem;background:var(--bg);line-height:1.7}
+.paper .t{font-weight:700;color:var(--ink)}
+.label{font:500 .76rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+
+/* Dialoghi */
+.student{border-left:3px solid var(--line);padding:4px 0 4px 14px;margin:0 0 14px;color:var(--ink)}
+.who{font:500 .74rem var(--sans);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:3px}
+.student .who{color:var(--muted)}
+.pair{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.reply{border-radius:8px;padding:14px 16px;border:1px solid var(--line);min-width:0;background:var(--bg)}
+.reply.gen .who{color:var(--muted)}
+.reply.upd{border-color:var(--good);background:var(--good-soft)}
+.reply.upd .who{color:var(--good)}
+.reply .then{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:.97rem}
+.reply .then i{color:var(--muted)}
+
+/* Fasi */
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
+.phase{padding:18px 20px 18px 0;border-top:3px solid var(--line)}
+.phase:first-child{border-top-color:var(--accent)}
+.phase .when{font:500 .76rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.phase h3{margin:6px 0}
+.phase p{font-size:.96rem;color:var(--muted);margin:0}
+
+/* Passi del wizard */
+.step{display:grid;gap:28px;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);align-items:start;padding-block:28px;border-top:1px solid var(--line)}
+.step .n{font-weight:300;font-size:2.6rem;line-height:1;color:var(--accent);display:block;margin-bottom:8px}
+@media (max-width:760px){.step{grid-template-columns:1fr}}
+
+.ph{border:1px dashed var(--line);border-radius:10px;padding:30px 16px;text-align:center;color:var(--muted);font-size:.92rem}
+.people{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.person .role{font:500 .76rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.refs li{margin-bottom:8px;font-size:.95rem}
+.copy{font:500 .78rem var(--sans);border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px;padding:4px 10px;cursor:pointer;margin-left:8px}
+
+.pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:22px;border-top:1px solid var(--line)}
+.pager a{font-weight:500;text-decoration:none}
+.cta-band{background:var(--alt);border-top:1px solid var(--line)}
+.cta-band .in{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;padding-block:30px}
+.cta-band p{margin:0;font-size:1.1rem;color:var(--ink);font-weight:300}
+.cta-band .btns{margin-top:0}
+
+footer{border-top:1px solid var(--line)}
+.footin{padding-block:22px;font-size:.86rem;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+.page{display:none} .page.active{display:block}
+@media (prefers-reduced-motion:no-preference){.page.active{animation:fade .2s ease-out}@keyframes fade{from{opacity:.5}to{opacity:1}}}
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap topin">
+    <a class="brand" href="#home" aria-label="UPDAIT, home"><span class="w">UPDAIT</span><span class="s"><b>U</b>niversità di <b>P</b>a<b>D</b>ova <b>AI</b> <b>T</b>utors</span></a>
+    <nav class="main" id="nav" aria-label="Navigazione principale">
+      <a href="#home">Home</a>
+      <div class="has-sub" data-group="approccio">
+        <button class="navbtn" type="button" onclick="location.hash='approccio'">Approccio ▾</button>
+        <div class="sub">
+          <a href="#approccio">Panoramica</a>
+          <a href="#perche">Perché un tutor IA</a>
+          <a href="#efficace">Che cosa rende efficace un tutor</a>
+          <a href="#regole">Dalla teoria alle regole</a>
+          <a href="#attivita">Il docente nel sistema di attività</a>
+          <a href="#voce">La voce del docente</a>
+          <a href="#esempi">Esempi di dialogo</a>
+        </div>
+      </div>
+      <a href="#costruire">Costruire un tutor</a>
+      <div class="has-sub" data-group="progetto">
+        <button class="navbtn" type="button" onclick="location.hash='progetto'">Il progetto ▾</button>
+        <div class="sub">
+          <a href="#progetto">Fasi e partecipazione</a>
+          <a href="#etica">Etica, privacy e limiti</a>
+          <a href="#team">Team e contatti</a>
+        </div>
+      </div>
+      <a href="#risorse">Risorse</a>
+    </nav>
+    <div class="tools">
+      <button class="toggle" id="menubtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HOME ===================== -->
+<section class="page" id="p-home">
+  <div class="hero"><div class="wrap">
+    <span class="ver">Università di Padova · Faculty Development</span>
+    <p class="word">UPDAIT</p>
+    <p class="acro"><b>U</b>niversità di <b>P</b>a<b>D</b>ova <b>AI</b> <b>T</b>utors</p>
+    <p class="claim">Docenti che progettano tutor IA: tutor che fanno ragionare gli studenti e seguono le regole didattiche scritte dal docente.</p>
+    <div class="btns">
+      <a class="btn primary" href="#costruire">Prova il wizard</a>
+      <a class="btn" href="#progetto">Partecipa al progetto</a>
+    </div>
+    <p style="margin-top:18px"><a class="textlink" href="#approccio">Scopri l'approccio pedagogico →</a></p>
+  </div></div>
+
+  <div class="sec"><div class="wrap">
+    <div class="grid">
+      <div class="item rule-top"><span class="k">Il tutor</span><h3>Fa ragionare</h3><p>Pone domande, offre indizi graduati e lascia allo studente il lavoro cognitivo che produce apprendimento.</p></div>
+      <div class="item rule-top"><span class="k">Il docente</span><h3>Scrive le regole</h3><p>Stile, errore tipico, modo di dare feedback: il tutor esegue le scelte didattiche del docente.</p></div>
+      <div class="item rule-top"><span class="k">Lo studente</span><h3>Usa il proprio account</h3><p>Un solo prompt per ChatGPT, Claude o Gemini, anche gratuiti. UPDAIT non raccoglie dati degli studenti.</p></div>
+    </div>
+  </div></div>
+
+  <div class="sec alt"><div class="wrap">
+    <div class="grid two">
+      <div class="item">
+        <p class="eyebrow">Un esempio</p>
+        <h2>Lo stesso messaggio, due risposte</h2>
+        <p class="student"><span class="who">Studente</span>Il bambino di 4 anni non capisce che la quantità d'acqua resta uguale anche se cambia il contenitore.</p>
+        <div class="pair">
+          <div class="reply gen"><span class="who">Assistente generico</span>È nello stadio preoperatorio di Piaget, in cui manca la conservazione della quantità.</div>
+          <div class="reply upd"><span class="who">Tutor UPDAIT</span>Che cosa pensi stia limitando la sua comprensione? Su che cosa si concentra quando guarda i due bicchieri?</div>
+        </div>
+        <p style="margin-top:16px"><a class="textlink" href="#esempi">Altri esempi per area →</a></p>
+      </div>
+      <figure>
+        <img src="img/step9-tutor.jpg" alt="Step 9 del wizard: il riepilogo del tutor Socratico di Psicologia dello sviluppo, il messaggio con cui il tutor apre la sessione e il prompt generato." loading="lazy">
+        <figcaption>Il wizard mostra come il tutor aprirà la sessione e genera il prompt da condividere con gli studenti.</figcaption>
+      </figure>
+    </div>
+  </div></div>
+
+  <div class="sec"><div class="wrap">
+    <div class="col">
+      <h2>In breve</h2>
+      <p>UPDAIT è nato come sperimentazione con circa 30 docenti ed è ora proposto come progetto d'Ateneo. Il docente usa un percorso guidato, il wizard UPDAIT, che gli pone domande sulla propria didattica e le traduce in un prompt pedagogico, cioè un testo strutturato che istruisce l'IA su come comportarsi con gli studenti. La stessa IA può aiutare o danneggiare l'apprendimento a seconda delle regole che segue: progettare quelle regole è un compito didattico, e spetta al docente.</p>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===================== APPROCCIO: PANORAMICA ===================== -->
+<section class="page" id="p-approccio">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Approccio pedagogico</p>
+    <h1>Un tutor che fa ragionare</h1>
+    <p class="lead">La differenza tra un tutor che aiuta e uno che sostituisce lo studente non sta nella tecnologia, ma nelle regole che segue.</p>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <p class="summary col">Ogni tutor UPDAIT nasce da regole esplicite, derivate dalle scienze dell'apprendimento e verificabili nel dialogo. Chi le scrive è il docente.</p>
+  </div></div>
+  <div class="sec" style="padding-top:0"><div class="wrap">
+    <div class="grid">
+      <a class="item" href="#perche"><span class="k">1</span><h3>Perché un tutor IA</h3><p>Le classi numerose e il rischio di delegare il ragionamento all'IA.</p><span class="go">Leggi →</span></a>
+      <a class="item" href="#efficace"><span class="k">2</span><h3>Che cosa rende efficace un tutor</h3><p>Le tre dimensioni del tutoring e che cosa dice la ricerca del 2026.</p><span class="go">Leggi →</span></a>
+      <a class="item" href="#regole"><span class="k">3</span><h3>Dalla teoria alle regole</h3><p>Sette principi e le regole concrete che ne derivano.</p><span class="go">Leggi →</span></a>
+      <a class="item" href="#attivita"><span class="k">4</span><h3>Il docente nel sistema di attività</h3><p>Quale ruolo resta al docente quando c'è un tutor IA.</p><span class="go">Leggi →</span></a>
+      <a class="item" href="#voce"><span class="k">5</span><h3>La voce del docente</h3><p>Stili di tutoring, identità pedagogica ed errore tipico.</p><span class="go">Leggi →</span></a>
+      <a class="item" href="#esempi"><span class="k">6</span><h3>Esempi di dialogo</h3><p>Lo stesso messaggio, due risposte, in quattro aree disciplinari.</p><span class="go">Leggi →</span></a>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===================== PERCHÉ ===================== -->
+<section class="page" id="p-perche" data-group="approccio">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Approccio pedagogico · 1 di 6</p>
+    <h1>Perché un tutor IA</h1>
+    <p class="lead">Il supporto individuale è uno dei fattori più efficaci per l'apprendimento, ma con cento studenti per insegnamento è difficile garantirlo.</p>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="col">
+      <p class="summary">L'IA può offrire supporto a tutti, sempre. Ma usata senza regole migliora gli esercizi e peggiora gli esami.</p>
+      <p>Negli insegnamenti con più di 50 studenti offrire un feedback immediato e personalizzato diventa praticamente impossibile, eppure la ricerca educativa lo riconosce come un fattore decisivo per il successo formativo. L'IA generativa sembra una risposta, perché è disponibile sempre e per tutti: il punto è capire a quali condizioni aiuta davvero.</p>
+    </div>
+  </div></div>
+  <div class="sec alt"><div class="wrap">
+    <h2 class="col">La stessa IA, due risultati opposti</h2>
+    <p class="col">In un esperimento sul campo pubblicato su PNAS, Bastani e colleghi (2025) hanno confrontato l'uso libero di ChatGPT con una versione tutor costruita su regole didattiche.</p>
+    <div class="figs">
+      <div class="fig"><span class="tagline up">Aumento</span><b>+48%</b><span class="d">negli esercizi, con ChatGPT senza vincoli</span></div>
+      <div class="fig"><span class="tagline down">Calo</span><b>−17%</b><span class="d">all'esame, con ChatGPT senza vincoli</span></div>
+      <div class="fig"><span class="tagline up">Aumento</span><b>+127%</b><span class="d">negli esercizi, con la versione tutor</span></div>
+      <div class="fig"><span class="tagline up">Stabile</span><b>nessun calo</b><span class="d">significativo all'esame, con la versione tutor</span></div>
+    </div>
+    <p class="small muted" style="margin-top:12px">Bastani, H., et al. (2025). PNAS, 122(26), e2422633122.</p>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="col">
+      <h2>Prestazione non è apprendimento</h2>
+      <p>Un tutor che risponde a tutto migliora la prestazione assistita, ma può lasciare un apprendimento debole (Soderstrom e Bjork, 2015). Lo studente delega il ragionamento alla macchina, ottiene il risultato e perde l'occasione di costruire le proprie conoscenze: è il fenomeno che la letteratura chiama "cognitive offloading". Il rischio, come mostrano le ricerche più recenti, non dipende dalla tecnologia in sé, ma da come l'IA è inserita nella didattica.</p>
+    </div>
+  </div></div>
+  <div class="wrap"><div class="pager"><a href="#approccio">← Panoramica</a><a href="#efficace">Che cosa rende efficace un tutor →</a></div></div>
+</section>
+
+<!-- ===================== EFFICACE ===================== -->
+<section class="page" id="p-efficace" data-group="approccio">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Approccio pedagogico · 2 di 6</p>
+    <h1>Che cosa rende efficace un tutor</h1>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="col">
+      <p class="summary">Conta la qualità dell'interazione, non il fatto che il tutor sia una persona o una macchina.</p>
+      <h2>Il problema dei 2 sigma, rivisto</h2>
+      <p>Nel 1984 Benjamin Bloom osservò che gli studenti seguiti individualmente da un tutor superavano di circa due deviazioni standard quelli di una classe tradizionale. Le meta-analisi successive invitano alla prudenza: Nickow e colleghi (2020) stimano un effetto medio di circa 0,37 deviazioni standard. VanLehn (2011) ha mostrato che i sistemi di tutoring che lavorano passo per passo (d = 0,76) si avvicinano molto al tutoring umano (d = 0,79). Per UPDAIT i 2 sigma restano un orizzonte di riferimento, non una promessa.</p>
+    </div>
+  </div></div>
+  <div class="sec alt"><div class="wrap">
+    <h2>Tre dimensioni del tutoring</h2>
+    <div class="grid">
+      <div class="item rule-top"><span class="k">Cognitiva</span><p>Gestisce il carico cognitivo e trasforma lo sforzo improduttivo in sforzo produttivo.</p></div>
+      <div class="item rule-top"><span class="k">Pedagogica</span><p>Usa lo scaffolding, le domande socratiche, la riflessione, il sostegno all'autoregolazione.</p></div>
+      <div class="item rule-top"><span class="k">Emotiva</span><p>Sostiene motivazione e perseveranza in un ambiente in cui lo studente si sente al sicuro: "tutor" viene dal latino "tutus".</p></div>
+    </div>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="col">
+      <h2>Che cosa aggiunge la ricerca del 2026</h2>
+      <p>Gli studi del 2026 non si chiedono più soltanto se un tutor IA sia utile, ma quali caratteristiche debba avere perché l'apprendimento sia reale. Tre indicazioni emergono con una certa coerenza:</p>
+      <ul class="plain">
+        <li><b>La struttura pedagogica conta più dell'interfaccia.</b> Un tutor strutturato supera l'IA usata liberamente; la modalità vocale aumenta le interazioni ma non l'apprendimento.</li>
+        <li><b>Un chatbot, da solo, non basta.</b> Gli effetti positivi compaiono quando il tutor è inserito in un impianto didattico, non quando è semplicemente messo a disposizione.</li>
+        <li><b>Il modello ibrido funziona meglio.</b> Il docente interviene dove il supporto automatico non è sufficiente.</li>
+      </ul>
+      <div class="acc">
+        <details><summary><span>Yang, Van Alstyne e Dellarocas (2026)<span class="sub2">Tutor strutturato contro IA libera; voce contro testo</span></span></summary><div><p>Esperimento randomizzato e preregistrato con 86 studenti di un MBA online. Il tutor strutturato e ancorato ai materiali ha prodotto guadagni significativamente maggiori, soprattutto nella qualità del ragionamento scritto. La voce ha quasi raddoppiato le interazioni senza migliorare l'apprendimento: rendere un'IA più simile a una persona non la rende di per sé più educativa. <a href="https://arxiv.org/abs/2609.23958" target="_blank" rel="noopener">Preprint arXiv</a></p></div></details>
+        <details><summary><span>Thoeni e Fryer (2026)<span class="sub2">Un chatbot ancorato ai contenuti del corso, per un semestre: nessun effetto</span></span></summary><div><p>Esperimento randomizzato con circa 500 studenti universitari, in presenza e online: un chatbot ancorato a contenuti validati (RAG) non ha avuto effetti significativi né su interesse, autoefficacia e coinvolgimento, né sul rendimento. <a href="https://doi.org/10.1016/j.chbr.2026.101061" target="_blank" rel="noopener">Computers in Human Behavior Reports, 22</a></p></div></details>
+        <details><summary><span>Zhao et al. (2026)<span class="sub2">Tutor generativo e mappa della conoscenza in anatomia</span></span></summary><div><p>Studio randomizzato controllato con tre gruppi e 301 studenti di infermieristica: risultati migliori in anatomia, ritenzione e ragionamento su casi. Il tutor era però inserito in un impianto didattico completo, basato sui nove eventi dell'istruzione di Gagné: l'effetto riguarda il modello nel suo insieme. <a href="https://doi.org/10.1186/s12909-026-09469-0" target="_blank" rel="noopener">BMC Medical Education</a></p></div></details>
+        <details><summary><span>Gurung et al. (2026)<span class="sub2">Tutoring ibrido umano e IA</span></span></summary><div><p>Studio quasi-sperimentale su 635 studenti di scuola media: affiancare tutor umani al sistema di IA era associato a più tempo di lavoro, maggiore padronanza e una crescita più alta nei test standardizzati rispetto alla fase con sola IA. <a href="https://educationaldatamining.org/edm2026/proceedings/2026.EDM.full-papers.266/" target="_blank" rel="noopener">EDM 2026</a></p></div></details>
+        <details><summary><span>Northcutt et al. (2026), StudentBench<span class="sub2">IA e tutor umani esperti, guadagni equivalenti nel breve termine</span></span></summary><div><p>Su 2.383 partecipanti assegnati in modo casuale, un'ora di tutoring IA ha prodotto nei test GRE guadagni statisticamente equivalenti a quelli di tutor umani esperti. Da leggere con cautela: preprint finanziato da un'azienda del settore, solo apprendimento immediato, nessun gruppo che si esercitasse da solo. <a href="https://arxiv.org/abs/2609.28470" target="_blank" rel="noopener">Preprint arXiv</a></p></div></details>
+        <details><summary><span>Niousha et al. (2026)<span class="sub2">Valutare il tutor da come lo studente usa il feedback</span></span></summary><div><p>Su oltre 10.000 consegne di codice, gli autori mostrano che non basta valutare la qualità delle risposte del tutor: bisogna osservare se lo studente usa il feedback per migliorare, ragionando oppure copiando una soluzione. È la ragione per cui in UPDAIT ogni regola deve essere verificabile nel dialogo. <a href="https://arxiv.org/abs/2605.05648" target="_blank" rel="noopener">Preprint arXiv</a></p></div></details>
+      </div>
+    </div>
+  </div></div>
+  <div class="wrap"><div class="pager"><a href="#perche">← Perché un tutor IA</a><a href="#regole">Dalla teoria alle regole →</a></div></div>
+</section>
+
+<!-- ===================== REGOLE ===================== -->
+<section class="page" id="p-regole" data-group="approccio">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Approccio pedagogico · 3 di 6</p>
+    <h1>Dalla teoria alle regole del prompt</h1>
+    <p class="lead">Ogni regola è verificabile nel dialogo.</p>
+  </div></div>
+  <div class="sec"><div class="wrap"><div class="col">
+    <p class="summary">Un prompt del tipo "sii un buon tutor" lascia decidere all'IA, che di solito dà la risposta. UPDAIT traduce ogni principio in un comportamento osservabile.</p>
+    <p>Così il docente può controllare, leggendo una conversazione reale, se la regola è stata rispettata. Apri ogni principio per vedere la regola e come riconoscerla.</p>
+    <div class="acc">
+      <details open><summary><span>Zona di sviluppo prossimale e scaffolding<span class="sub2">Vygotskij</span></span></summary><div><dl class="rr"><dt>Regola</dt><dd>Indizi graduati, il primo mai con la risposta; il supporto si riduce man mano che lo studente diventa autonomo ("fading").</dd><dt>Nel dialogo</dt><dd>Il tutor risponde a una richiesta d'aiuto con una domanda o un indizio parziale, non con la soluzione.</dd></dl></div></details>
+      <details><summary><span>Fatica produttiva<span class="sub2">Productive struggle: lo sforzo che fa imparare</span></span></summary><div><dl class="rr"><dt>Regola</dt><dd>Prima il tentativo, poi la soluzione; gli esercizi assegnati non vengono svolti al posto dello studente.</dd><dt>Nel dialogo</dt><dd>Se lo studente incolla un esercizio, il tutor chiede che cosa ha già provato.</dd></dl></div></details>
+      <details><summary><span>Feedback<span class="sub2">Hattie e Timperley</span></span></summary><div><dl class="rr"><dt>Regola</dt><dd>Feedback in tre parti: dove stai andando, a che punto sei, qual è il passo successivo; l'errore è dichiarato come tale, mai giustificato.</dd><dt>Nel dialogo</dt><dd>Il tutor dice chiaramente che una risposta è sbagliata e indica su che cosa lavorare.</dd></dl></div></details>
+      <details><summary><span>Richiamo dalla memoria e transfer<span class="sub2">Retrieval practice: ricordare e applicare a casi nuovi</span></span></summary><div><dl class="rr"><dt>Regola</dt><dd>Nei quiz è sempre presente almeno una domanda di transfer.</dd><dt>Nel dialogo</dt><dd>Accanto alle domande di richiamo compare un caso nuovo, da risolvere con lo stesso concetto.</dd></dl></div></details>
+      <details><summary><span>Apprendimento autoregolato<span class="sub2">Zimmerman</span></span></summary><div><dl class="rr"><dt>Regola</dt><dd>Obiettivo della sessione, comando "Rifletti", Scheda di Ripresa a fine sessione.</dd><dt>Nel dialogo</dt><dd>Il tutor apre chiedendo l'obiettivo e chiude con un breve bilancio da riusare la volta successiva.</dd></dl></div></details>
+      <details><summary><span>Universal Design for Learning<span class="sub2">CAST, versione 3.0</span></span></summary><div><dl class="rr"><dt>Regola</dt><dd>Adattamenti operativi e reversibili, che lo studente può chiedere o annullare; le eventuali condizioni personali non vengono mai nominate.</dd><dt>Nel dialogo</dt><dd>Il tutor offre formati diversi (schema, esempio, testo più breve) senza etichettare lo studente.</dd></dl></div></details>
+      <details><summary><span>Affidabilità epistemica<span class="sub2">Fonti e verifica</span></span></summary><div><dl class="rr"><dt>Regola</dt><dd>Disclaimer fisso; priorità ai materiali del corso rispetto alle conoscenze generali del modello.</dd><dt>Nel dialogo</dt><dd>Il tutor ricorda di verificare con i materiali o con il docente e rimanda al programma del corso.</dd></dl></div></details>
+    </div>
+  </div></div></div>
+  <div class="sec alt"><div class="wrap"><div class="col">
+    <h2>Il doppio livello dialogico</h2>
+    <p>Wegerif e Casebourne (2025) leggono l'apprendimento con l'IA come un dialogo su due piani. Nel primo, il dialogo socratico immediato, il tutor non risponde ma interroga. Nel secondo, il dialogo con la disciplina, collega il ragionamento dello studente alle tradizioni e ai dibattiti del campo. In UPDAIT le regole qui sopra governano il primo livello; il secondo nasce dai materiali e dall'identità pedagogica che il docente inserisce nel wizard.</p>
+    <h2 style="margin-top:28px">Che cosa non fa il tutor</h2>
+    <p>Non sostituisce il docente, non svolge compiti valutati al posto dello studente e non raccoglie dati personali. I modelli gratuiti seguono alcune regole in modo imperfetto: per questo il wizard privilegia regole semplici e verificabili, e consiglia di inserire il prompt nelle istruzioni di un progetto anziché incollarlo come primo messaggio.</p>
+  </div></div></div>
+  <div class="wrap"><div class="pager"><a href="#efficace">← Che cosa rende efficace un tutor</a><a href="#attivita">Il docente nel sistema di attività →</a></div></div>
+</section>
+
+<!-- ===================== ATTIVITÀ ===================== -->
+<section class="page" id="p-attivita" data-group="approccio">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Approccio pedagogico · 4 di 6</p>
+    <h1>Il docente dentro il sistema di attività</h1>
+  </div></div>
+  <div class="sec"><div class="wrap"><div class="col">
+    <p class="summary">Il tutor non sostituisce il docente: il docente ne scrive le regole e decide chi svolge il lavoro cognitivo.</p>
+    <p>Un tutor IA opera dentro due sistemi di attività che condividono lo stesso oggetto, cioè l'apprendimento dello studente: nel primo lo studente lavora con l'IA, nel secondo il docente progetta e insegna. Nel punto di contatto nascono le contraddizioni (Engeström, 2001): la dipendenza dallo strumento, il calo di motivazione, il disallineamento tra ciò che l'IA spiega e ciò che il corso chiede, e l'incertezza del docente sul proprio ruolo (Crawford, Cowling e Allen, 2023).</p>
+  </div></div></div>
+  <div class="sec" style="padding-top:0"><div class="wrap"><div class="col">
+    <div class="ph">Schema dei due sistemi di attività: studente + IA e docente + IA, con l'oggetto condiviso al centro</div>
+  </div></div></div>
+  <div class="sec alt"><div class="wrap"><div class="col">
+    <h2>La risposta di UPDAIT</h2>
+    <p>Il docente rientra nel sistema dello studente scrivendone le regole, ovvero che cosa il tutor può e non può fare, e la divisione del lavoro, cioè chi svolge il lavoro cognitivo in ciascun momento della conversazione. Il prompt, in questo senso, non è un'istruzione tecnica ma un atto di progettazione didattica: il docente non delega il proprio ruolo alla macchina, lo esercita in una forma nuova.</p>
+    <div class="acc"><details><summary><span>Perché l'Activity Theory<span class="sub2">Vygotskij, Leontiev, Engeström</span></span></summary><div>
+      <p>Il riferimento è alla Activity Theory, che da Vygotskij (la mediazione degli strumenti culturali) passa per Leontiev (l'attività collettiva) e arriva a Engeström (i sistemi di attività in interazione). In ogni sistema si distinguono un soggetto, un oggetto, gli strumenti, le regole, la comunità e la divisione del lavoro.</p>
+      <p>L'IA generativa pone a questa teoria una domanda aperta: l'Activity Theory distingue tra agenti sociali e strumenti, ma un'IA che si comporta in modo sociale ed è percepita come intenzionale non sta comodamente in nessuna delle due categorie. I confini tra il ruolo del docente e quello del tutor, del resto, si stavano già sfumando prima dell'IA generativa (Bray, 2021).</p>
+    </div></details></div>
+  </div></div></div>
+  <div class="wrap"><div class="pager"><a href="#regole">← Dalla teoria alle regole</a><a href="#voce">La voce del docente →</a></div></div>
+</section>
+
+<!-- ===================== VOCE ===================== -->
+<section class="page" id="p-voce" data-group="approccio">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Approccio pedagogico · 5 di 6</p>
+    <h1>La voce del docente</h1>
+  </div></div>
+  <div class="sec"><div class="wrap"><div class="col">
+    <p class="summary">Le regole sono comuni a tutti i tutor; ciò che li rende diversi è il sapere pratico del docente.</p>
+    <p>Nelle prove esplorative di ottobre 2026 con le versioni gratuite di ChatGPT e Gemini abbiamo osservato che il tutor esegue le scelte del docente quasi alla lettera, e che segue una mossa didattica concreta molto più fedelmente di una descrizione generica del problema.</p>
+  </div></div></div>
+  <div class="sec alt"><div class="wrap">
+    <div class="grid two">
+      <div class="item">
+        <h2>Cinque stili di tutoring</h2>
+        <p>Scegliere uno stile significa decidere chi svolge il lavoro cognitivo: quando il tutor spiega e quando chiede, quanta parte della soluzione rivela, che cosa fa quando lo studente si blocca. Gli stili non formano una scala di efficacia (Mastrokoukou et al., 2022).</p>
+        <dl class="rr" style="grid-template-columns:120px 1fr">
+          <dt>Esperto</dt><dd>Spiega prima e verifica dopo. Per contenuti nuovi o prerequisiti fragili.</dd>
+          <dt>Socratico</dt><dd>Fa costruire la soluzione con domande. Quando le basi ci sono già.</dd>
+          <dt>Coach</dt><dd>Lo studente sceglie i passi, il tutor sostiene strategia e motivazione.</dd>
+          <dt>Diagnostico</dt><dd>Parte dall'errore e lo mette in crisi con un controesempio.</dd>
+          <dt>Architetto</dt><dd>Le regole del dialogo le scrive il docente.</dd>
+        </dl>
+      </div>
+      <figure><img src="img/step1-stile.jpg" alt="Step 1 del wizard: scelta dello stile di tutoraggio tra Esperto, Socratico, Coach, Diagnostico e Architetto, ciascuno con la descrizione e quando usarlo." loading="lazy"><figcaption>Step 1 del wizard: la scelta dello stile.</figcaption></figure>
+    </div>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="grid two">
+      <figure><img src="img/step7-errore-tipico.jpg" alt="Step 7 del wizard: il riquadro L'errore tipico dei tuoi studenti, con i campi l'errore che vedi più spesso, come lo riconosci e che cosa fai di solito." loading="lazy"><figcaption>Step 7: l'errore tipico, descritto come lo vede il docente.</figcaption></figure>
+      <div class="item"><h2>L'errore tipico</h2><p>Il docente descrive l'errore più frequente dei suoi studenti, come lo riconosce e che cosa fa in aula quando lo incontra. Il tutor riceve così non una lista di contenuti, ma una strategia già sperimentata, che usa prima di correggere.</p></div>
+    </div>
+    <div class="grid two" style="margin-top:36px">
+      <div class="item"><h2>Identità pedagogica autentica</h2><p>Il wizard chiede al docente come vede la disciplina e a che cosa serve davvero il corso, al di là del programma. È ciò che permette al tutor di parlare con la voce del docente e di collegare il ragionamento dello studente alle questioni di fondo del campo.</p>
+        <div class="acc"><details><summary>Progettare il tutor come riflessione sulla didattica</summary><div><p>Molti docenti della prima sperimentazione hanno descritto la creazione del tutor come un momento di riflessione sulla propria didattica: per scrivere le regole bisogna rendere esplicite scelte che in aula restano implicite. Schön (1983) ha mostrato come sia proprio la capacità di riflettere sull'azione a distinguere il professionista esperto da quello routinario.</p></div></details></div>
+      </div>
+      <figure><img src="img/step8b-identita.jpg" alt="Step Identità pedagogica autentica del wizard: le domande come vedi la tua materia e a cosa serve davvero il tuo corso, con spunti da cui partire." loading="lazy"><figcaption>Lo step "Identità pedagogica autentica".</figcaption></figure>
+    </div>
+  </div></div>
+  <div class="wrap"><div class="pager"><a href="#attivita">← Il docente nel sistema di attività</a><a href="#esempi">Esempi di dialogo →</a></div></div>
+</section>
+
+<!-- ===================== ESEMPI ===================== -->
+<section class="page" id="p-esempi" data-group="approccio">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Approccio pedagogico · 6 di 6</p>
+    <h1>Esempi di dialogo</h1>
+    <p class="lead">Lo stesso messaggio, due risposte. Esempi illustrativi, non trascrizioni di conversazioni reali.</p>
+  </div></div>
+  <div class="sec"><div class="wrap"><div class="col">
+    <div class="acc" id="dialogs"></div>
+    <h2 style="margin-top:32px">Che cosa osservare</h2>
+    <p>Il tutor UPDAIT non nega l'aiuto, ma lo fornisce in modo diverso: lo studente svolge il lavoro cognitivo centrale, il tutor interviene con domande e indizi e, solo dopo, collega il ragionamento ai concetti e ai dibattiti della disciplina. Sono le mosse che un docente compie in aula; il wizard serve a renderle esplicite.</p>
+  </div></div></div>
+  <div class="wrap"><div class="pager"><a href="#voce">← La voce del docente</a><a href="#costruire">Costruire un tutor →</a></div></div>
+</section>
+
+<!-- ===================== COSTRUIRE ===================== -->
+<section class="page" id="p-costruire">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">In pratica</p>
+    <h1>Costruire un tutor</h1>
+    <p class="lead">Un solo prompt, generato con un percorso guidato, che gli studenti usano con il proprio account di ChatGPT, Claude o Gemini.</p>
+    <div class="btns"><a class="btn primary" href="#costruire">Apri il wizard</a><a class="btn" href="#costruire">Guida per i docenti</a></div>
+    <p class="small muted" style="margin-top:10px">[Inserire i link al wizard v22.19 e alle guide]</p>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="step">
+      <div><span class="n">1</span><h2>Scegli modalità e stile</h2><p><b>Rapida</b> (circa 5 minuti) chiede solo stile, area e dati del corso. <b>Progetto guidato</b> (15-20 minuti) percorre tutti i passaggi ed è consigliato per il primo tutor. Poi si sceglie lo stile di tutoring.</p></div>
+      <figure><img src="img/wizard-modalita.jpg" alt="Schermata del wizard con la scelta tra modalità Rapida e Progetto guidato." loading="lazy"><figcaption>La scelta della modalità.</figcaption></figure>
+    </div>
+    <div class="step">
+      <div><span class="n">2</span><h2>Descrivi corso e didattica</h2><p>Area, materia e argomenti (il syllabus si può incollare), poi le leve pedagogiche: quanto il tutor spiega o fa scoprire, quanto segue il programma, come dà feedback, quali supporti di inclusione attivare, l'errore tipico e l'identità pedagogica.</p></div>
+      <figure><img src="img/step4-guida.jpg" alt="Step 4 del wizard: cursore tra istruzione diretta e scoperta guidata, impostato su Socratico puro, con un esempio di risposta del tutor." loading="lazy"><figcaption>Step 4: lo stile di guida, da istruzione diretta a scoperta guidata.</figcaption></figure>
+    </div>
+    <div class="step">
+      <div><span class="n">3</span><h2>Controlla, prova e condividi</h2><p>Il wizard mostra come il tutor aprirà la sessione e genera il prompt. Prima di condividerlo con gli studenti puoi provarlo con due messaggi tipici di uno studente, costruiti a partire dall'errore tipico e da un esercizio del corso.</p></div>
+      <figure><img src="img/step10-prova.jpg" alt="Step 10 del wizard: due messaggi di prova, uno sull'errore tipico e uno con la richiesta di risolvere un esercizio, con la domanda se il tutor ha reagito come previsto." loading="lazy"><figcaption>Step 10: la prova del tutor prima di condividerlo con gli studenti.</figcaption></figure>
+    </div>
+  </div></div>
+
+  <div class="sec alt"><div class="wrap">
+    <h2>Un estratto del prompt</h2>
+    <p class="col">Il prompt è un testo leggibile, non codice: il docente può aprirlo e verificarne ogni regola. Ecco un estratto di quello generato per un tutor Socratico di Psicologia dello sviluppo.</p>
+<pre class="code"><span class="c">&lt;identity&gt;</span>
+  Sei il tutor di Psicologia dello sviluppo creato da Prof.ssa Maria Rossi:
+  aiuti gli studenti a capire e a ragionare, senza fare il lavoro al posto loro.
+  STILE SOCRATICO: il ragionamento resta allo studente. Non fornire la soluzione:
+  falla costruire con domande, una alla volta, partendo da ciò che sa.
+  APPLICA: propongo lo stesso caso e chiedo come lo leggerebbe ciascuno dei due autori.
+<span class="c">&lt;/identity&gt;</span>
+<span class="c">&lt;rules&gt;</span>
+  FATICA PRODUTTIVA: quando lo studente deve risolvere o applicare qualcosa,
+  chiedi prima un suo tentativo. Gli indizi vanno dal più generale al più specifico.
+  FEEDBACK IN TRE PARTI: cosa hai detto, perché non è preciso, come ricordarlo.
+<span class="c">&lt;/rules&gt;</span></pre>
+  </div></div>
+
+  <div class="sec"><div class="wrap">
+    <h2>A fine sessione</h2>
+    <p class="col">Quando lo studente scrive F, il tutor chiude con una Scheda di Ripresa e, se il docente lo ha attivato, con un riepilogo anonimo per Moodle. Esempi illustrativi.</p>
+    <div class="grid two" style="margin-top:12px">
+      <div>
+        <p class="label">Scheda di Ripresa · per lo studente</p>
+        <div class="paper"><span class="t">📋 SCHEDA DI RIPRESA, Psicologia dello sviluppo</span><br>🧭 Obiettivo: distinguere Piaget e Vygotskij sulla conservazione; raggiunto in parte<br>📚 Argomenti: conservazione, centrazione, mediazione dell'adulto<br>✅ Spiegato da solo: il concetto di centrazione<br>⚠️ Da ripassare: il ruolo del linguaggio in Vygotskij<br>🪜 Aiuto usato: domanda guida, indizio<br>📍 Ci siamo fermati a: le due letture del caso dei bicchieri<br>➡️ Prossimo passo: applicare la ZSP a un caso nuovo</div>
+        <p class="small muted" style="margin-top:8px">Lo studente la incolla all'inizio della sessione successiva e il tutor riparte da lì.</p>
+      </div>
+      <div>
+        <p class="label">Riepilogo anonimo · per il docente</p>
+        <div class="paper">Sessione conclusa: Sì<br>Punto più difficile: distinguere maturazione e mediazione<br>Cosa ha aiutato: il confronto sullo stesso caso<br>Transfer esercitato: Parziale</div>
+        <p class="small muted" style="margin-top:8px">Facoltativo: lo studente lo incolla in un'attività Feedback anonima di Moodle. Nessun nome, nessun giudizio sullo studente.</p>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="sec alt"><div class="wrap"><div class="col">
+    <div class="acc"><details><summary>Checklist di autovalutazione del prompt</summary><div><ul class="plain">
+      <li>Il tutor mantiene lo studente attivo, o finisce per dare la risposta?</li>
+      <li>Riconosce l'errore tipico che ho descritto e reagisce come farei io?</li>
+      <li>Evita di risolvere gli esercizi assegnati al posto dello studente?</li>
+      <li>Ricorda di verificare con i materiali del corso?</li>
+    </ul></div></details></div>
+  </div></div></div>
+</section>
+
+<!-- ===================== PROGETTO ===================== -->
+<section class="page" id="p-progetto" data-group="progetto">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">UPDAIT di Ateneo</p>
+    <h1>Il progetto</h1>
+    <p class="lead">Un percorso di Faculty Development di 12 mesi per estendere UPDAIT ai dipartimenti e costruire una libreria di prompt didattici validati per area disciplinare.</p>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <h2>Le fasi</h2>
+    <div class="phases">
+      <div class="phase"><span class="when">Fase A · autunno 2026</span><h3>Formazione</h3><p>Manifestazione di interesse e laboratorio pratico in cui ogni docente progetta il proprio tutor.</p></div>
+      <div class="phase"><span class="when">Fase B · inverno 2026-27</span><h3>Progettazione condivisa e validazione</h3><p>Gruppi disciplinari, sviluppo iterativo dei prompt, revisione tra pari con una rubrica comune.</p></div>
+      <div class="phase"><span class="when">Fase C · fino a giugno 2027</span><h3>Sperimentazione</h3><p>I tutor validati vengono usati negli insegnamenti; feedback volontario e anonimo degli studenti.</p></div>
+    </div>
+  </div></div>
+  <div class="sec alt"><div class="wrap"><div class="col">
+    <h2>Partecipare</h2>
+    <p>La manifestazione di interesse è aperta a tutti i dipartimenti e le scuole. Hanno la precedenza gli insegnamenti con molti studenti (oltre 40-50), quelli in cui gli studenti chiedono più supporto e i docenti disponibili a seguire tutte le fasi, con attenzione alla varietà disciplinare.</p>
+    <p><b>Impegno richiesto:</b> [ore e calendario da definire]. <b>Scadenza:</b> [da definire].</p>
+    <div class="btns"><a class="btn primary" href="#progetto">Manifesta il tuo interesse</a></div>
+  </div></div></div>
+  <div class="sec"><div class="wrap">
+    <h2>Che cosa produrremo</h2>
+    <div class="grid">
+      <div class="item rule-top"><span class="k">Libreria</span><p>Prompt generali e specializzati per area, in licenza Creative Commons BY-NC-SA.</p></div>
+      <div class="item rule-top"><span class="k">Protocollo</span><p>Una rubrica per valutare la qualità pedagogica di un prompt, replicabile da altri atenei.</p></div>
+      <div class="item rule-top"><span class="k">Comunità</span><p>Una rete di docenti che continua a incontrarsi dopo la fine del progetto.</p></div>
+      <div class="item rule-top"><span class="k">Attestato</span><p>"UPDAIT AI-Tutor Designer" per chi completa il laboratorio. [ore da confermare]</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===================== ETICA ===================== -->
+<section class="page" id="p-etica" data-group="progetto">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Il progetto</p>
+    <h1>Etica, privacy e limiti</h1>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="grid">
+      <div class="item rule-top"><span class="k">Dati</span><h3>Nessun dato degli studenti</h3><p>UPDAIT non raccoglie dati degli studenti e non vede le loro conversazioni. Gli studenti usano il proprio account (modello BYOAI, Bring Your Own AI).</p></div>
+      <div class="item rule-top"><span class="k">Trasparenza</span><h3>Il tutor si presenta</h3><p>Dichiara di essere configurato dal docente, di non sostituirlo e invita a verificare con i materiali del corso.</p></div>
+      <div class="item rule-top"><span class="k">Ricerca</span><h3>Le scelte del docente</h3><p>Le scelte fatte nel wizard sono registrate a fini di ricerca sull'instructional design; il docente può chiederne la rimozione.</p></div>
+    </div>
+  </div></div>
+  <div class="sec alt"><div class="wrap"><div class="col">
+    <h2>Limiti noti</h2>
+    <p>I modelli gratuiti seguono alcune regole in modo imperfetto e il loro comportamento può cambiare con gli aggiornamenti dei fornitori. Non esistono analisi automatiche dei dati di apprendimento (learning analytics), ma solo informazioni condivise volontariamente. Gli studenti usano account personali, con le condizioni d'uso dei rispettivi servizi. La compatibilità del modello BYOAI con la normativa sulla privacy viene verificata con l'Ateneo prima della sperimentazione.</p>
+    <div class="acc"><details><summary>Se il tutor sbaglia: segnalazione degli incidenti</summary><div><ul class="plain">
+      <li>Il docente o lo studente segnala il problema tramite un modulo dedicato.</li>
+      <li>Se l'errore è confermato e rilevante, il prompt viene ritirato e rivisto.</li>
+      <li>Le segnalazioni confluiscono in un archivio condiviso tra i docenti partecipanti.</li>
+    </ul></div></details></div>
+  </div></div></div>
+</section>
+
+<!-- ===================== TEAM ===================== -->
+<section class="page" id="p-team" data-group="progetto">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Il progetto</p>
+    <h1>Team e contatti</h1>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="people">
+      <div class="item rule-top person"><span class="role">Responsabile scientifico</span><h3>Corrado Petrucco</h3><p>Dipartimento FISPPA</p></div>
+      <div class="item rule-top person"><span class="role">Team</span><h3>Giorgio Satta</h3><p>Dipartimento di Ingegneria dell'Informazione (DEI)</p></div>
+      <div class="item rule-top person"><span class="role">Team</span><h3>Carlo Mariconda</h3><p>Dipartimento di Matematica "Tullio Levi-Civita" (DM)</p></div>
+    </div>
+    <div class="col" style="margin-top:36px">
+      <h2>Contatti</h2>
+      <p><span id="mail">corrado.petrucco@unipd.it</span><button class="copy" id="copyMail" type="button">Copia</button></p>
+    </div>
+  </div></div>
+</section>
+
+<!-- ===================== RISORSE ===================== -->
+<section class="page" id="p-risorse">
+  <div class="pagehead"><div class="wrap">
+    <p class="eyebrow">Risorse</p>
+    <h1>Ricerca e materiali</h1>
+  </div></div>
+  <div class="sec"><div class="wrap"><div class="col">
+    <div class="ph">Presentazione "UPDAIT. Docenti che progettano tutor IA" (ottobre 2026)</div>
+    <h2 style="margin-top:32px">Che cosa stiamo verificando</h2>
+    <p>La prima fase è una ricerca-azione qualitativa: verifichiamo che i tutor rispettino i principi consolidati della ricerca sull'apprendimento e raccogliamo i primi risultati di UPDAIT sui processi di apprendimento degli studenti. La misura dell'impatto sui risultati, che richiede gruppi di controllo e studi longitudinali, è l'obiettivo di fasi successive.</p>
+    <div class="acc">
+      <details><summary>Guide e materiali</summary><div><ul class="plain"><li>Guida per i docenti [link]</li><li>Guida per gli studenti [link]</li><li>Wizard UPDAIT v22.19 [link]</li></ul></div></details>
+      <details><summary>Riferimenti essenziali</summary><div><ul class="plain refs">
+        <li>Bastani, H., et al. (2025). PNAS, 122(26), e2422633122.</li>
+        <li>Bloom, B. S. (1984). The 2 Sigma Problem. Educational Researcher.</li>
+        <li>Engeström, Y. (2001). Journal of Education and Work, 14(1).</li>
+        <li>Hattie, J., & Timperley, H. (2007). The Power of Feedback. Review of Educational Research.</li>
+        <li>Nickow, A., Oreopoulos, P., & Quan, V. (2020). The impressive effects of tutoring on PreK-12 learning.</li>
+        <li>Schön, D. A. (1983). The Reflective Practitioner.</li>
+        <li>Soderstrom, N. C., & Bjork, R. A. (2015). Perspectives on Psychological Science.</li>
+        <li>VanLehn, K. (2011). Educational Psychologist.</li>
+        <li>Wegerif, R., & Casebourne, I. (2025). British Journal of Educational Technology.</li>
+        <li>Zimmerman, B. J. (2002). Becoming a Self-Regulated Learner.</li>
+      </ul><p class="small muted">[Completare con i riferimenti bibliografici completi; gli studi del 2026 sono nella pagina "Che cosa rende efficace un tutor"]</p></div></details>
+      <details><summary>Domande frequenti</summary><div>
+        <h3>Servono competenze tecniche?</h3><p>No. Il docente risponde a domande sulla propria didattica; il wizard genera il prompt.</p>
+        <h3>Gli studenti devono pagare?</h3><p>No. Il tutor funziona anche con gli account gratuiti di ChatGPT, Claude e Gemini.</p>
+        <h3>Posso creare più tutor per lo stesso corso?</h3><p>Sì, anche uno per ciascun concetto difficile o per diverse fasi del semestre.</p>
+      </div></details>
+    </div>
+  </div></div></div>
+</section>
+
+<div class="cta-band" id="ctaBand"><div class="wrap in">
+  <p>Vuoi provare a progettare un tutor per il tuo insegnamento?</p>
+  <div class="btns"><a class="btn primary" href="#costruire">Prova il wizard</a><a class="btn" href="#progetto">Partecipa al progetto</a></div>
+</div></div>
+
+<footer><div class="wrap footin">
+  <span>UPDAIT · Università di Padova · Dipartimento FISPPA</span>
+  <span>Contenuti in licenza CC BY-NC-SA</span>
+</div></footer>
+
+<script>
+(function(){
+  var pages=["home","approccio","perche","efficace","regole","attivita","voce","esempi","costruire","progetto","etica","team","risorse"];
+  var groups={approccio:["approccio","perche","efficace","regole","attivita","voce","esempi"],progetto:["progetto","etica","team"]};
+  function show(){
+    var id=(location.hash||"#home").slice(1); if(pages.indexOf(id)<0) id="home";
+    document.querySelectorAll(".page").forEach(function(p){p.classList.toggle("active",p.id==="p-"+id);});
+    document.querySelectorAll("nav.main a").forEach(function(a){ if(a.getAttribute("href")==="#"+id && !a.closest(".sub")) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+    document.querySelectorAll(".has-sub").forEach(function(h){ var g=groups[h.dataset.group]||[]; h.classList.toggle("current",g.indexOf(id)>=0); });
+    document.getElementById("ctaBand").hidden = (id==="home");
+    document.getElementById("nav").classList.remove("open"); document.getElementById("menubtn").setAttribute("aria-expanded","false");
+    window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange",show); show();
+  document.getElementById("menubtn").addEventListener("click",function(){var n=document.getElementById("nav");var o=n.classList.toggle("open");this.setAttribute("aria-expanded",o?"true":"false");});
+
+
+  var areas=[
+    {k:"Scienze umane",d:"Psicologia dello sviluppo",s:"Il bambino di 4 anni non capisce che la quantità d'acqua resta uguale anche se cambia il contenitore.",g:"È nello stadio preoperatorio di Piaget, in cui manca la conservazione della quantità.",u:"Interessante osservazione. Che cosa pensi stia limitando la sua comprensione? Prova a immaginare come ragiona: su che cosa si concentra quando guarda i due bicchieri?",w:"Dopo la risposta dello studente",t:"La tua idea che il bambino guardi solo l'altezza dell'acqua richiama la centrazione in Piaget. Vygotskij leggerebbe però la scena in modo diverso: il limite sarebbe la mancanza di mediazione da parte di un adulto. Quale lettura ti convince di più, e perché?"},
+    {k:"STEM",d:"Equazioni differenziali",s:"Mi dai la soluzione di questa equazione differenziale? [segue l'esercizio]",g:"Separando le variabili e integrando si ottiene la soluzione generale [segue lo svolgimento completo].",u:"Prima di cominciare: che tipo di equazione è, e quale metodo hai già provato? Se ti blocchi su un passaggio, partiamo da quello.",w:"Quando lo studente ha impostato la separazione delle variabili",t:"Il metodo che hai scelto funziona bene qui. In quali casi, secondo te, smetterebbe di funzionare? È la domanda che ha portato ai metodi numerici."},
+    {k:"Area sanitaria",d:"Ragionamento clinico",s:"Nel caso del paziente con febbre, tosse e dolore toracico, qual è la diagnosi?",g:"Il quadro è compatibile con una polmonite [segue l'elenco degli esami].",u:"Quali ipotesi diagnostiche ti vengono in mente, e su quali elementi del caso le fondi? Se dovessi scegliere un solo esame per distinguere tra le prime due, quale richiederesti?",w:"Dopo la risposta",t:"Il tuo percorso è di tipo ipotetico-deduttivo. Come si confronta con il riconoscimento di schemi ricorrenti tipico dei clinici esperti? Per i casi del corso, verifica sempre con i materiali e con il docente."},
+    {k:"Giurisprudenza",d:"Argomentazione",s:"Questo precedente si applica al caso che stiamo studiando?",g:"Sì, perché i due casi sono simili [segue la motivazione].",u:"Quali sono i fatti materiali rilevanti del precedente? E in che cosa il caso in esame se ne discosta?",w:"Dopo la risposta",t:"La tua lettura resta vicina al testo della norma. Come dialogherebbe con l'orientamento della giurisprudenza costituzionale più recente?"}
+  ];
+  function esc(x){var d=document.createElement("div");d.textContent=x;return d.innerHTML;}
+  document.getElementById("dialogs").innerHTML=areas.map(function(a,i){
+    return '<details'+(i===0?' open':'')+'><summary><span>'+esc(a.k)+'<span class="sub2">'+esc(a.d)+'</span></span></summary><div>'+
+      '<p class="student"><span class="who">Studente</span>'+esc(a.s)+'</p>'+
+      '<div class="pair"><div class="reply gen"><span class="who">Assistente generico</span>'+esc(a.g)+'</div>'+
+      '<div class="reply upd"><span class="who">Tutor UPDAIT</span>'+esc(a.u)+'<div class="then"><i>'+esc(a.w)+':</i> '+esc(a.t)+'</div></div></div></div></details>';
+  }).join("");
+
+  document.getElementById("copyMail").addEventListener("click",function(){
+    var el=document.getElementById("mail"),btn=this;
+    function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent="Copiato";},sel);}else sel();
+  });
+})();
+</script>
+
+</body>
+</html>
