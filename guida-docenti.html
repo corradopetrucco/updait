@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guida per i docenti</title><style>
+:root{--red:#9b0014;--ink:#1e293b;--muted:#475569;--line:#e2e8f0;--bg:#f8fafc;--card:#ffffff}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:var(--card);border-bottom:3px solid var(--red);padding:24px 20px}
+header .wrap,main{max-width:1060px;margin:0 auto}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700;margin:0 0 4px}
+.kicker a{color:inherit;text-decoration:none}
+h1{font-size:28px;font-weight:600;margin:0 0 6px;line-height:1.25}
+.lead{color:var(--muted);margin:0;max-width:62ch}
+main{display:grid;grid-template-columns:230px 1fr;gap:28px;padding:24px 20px 60px}
+nav{position:sticky;top:16px;align-self:start}
+nav ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+nav a{display:block;padding:7px 12px;color:var(--muted);text-decoration:none;font-size:14px;border-left:2px solid transparent;margin-left:-2px}
+nav a:hover,nav a.on{color:var(--red);border-left-color:var(--red)}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 26px;margin:0 0 20px;scroll-margin-top:16px}
+section h2{font-size:21px;margin:0 0 12px;color:var(--ink)}
+section h2 .n{color:var(--red);margin-right:8px}
+section h3{font-size:16px;margin:20px 0 6px;color:var(--ink)}
+section p,section li{max-width:70ch}
+section ul,section ol{padding-left:22px;margin:6px 0 10px}
+section li{margin:4px 0}
+.top{font-size:13px;color:var(--muted);text-decoration:none;display:inline-block;margin-top:8px}
+.top:hover{color:var(--red)}
+footer{max-width:1060px;margin:0 auto;padding:0 20px 40px;color:var(--muted);font-size:13px}
+footer p{margin:0 0 4px}
+@media (max-width:760px){main{grid-template-columns:1fr;gap:12px;padding:16px}nav{position:static}nav ol{display:flex;flex-wrap:wrap;gap:6px;border:0}nav a{border:1px solid var(--line);border-radius:999px;margin:0;padding:4px 12px;background:var(--card)}section{padding:18px}h1{font-size:23px}}
+</style></head>
+<body id="top"><header><div class="wrap"><p class="kicker"><a href="index.html">← UPDAIT · Università di Padova</a></p><h1>Guida per i docenti</h1><p class="lead">Come creare un tutor AI per il tuo corso con UPDAIT e condividerlo con gli studenti.</p></div></header>
+<main><nav aria-label="Indice"><ol><li><a href="#iniziare">1. Prima di iniziare</a></li><li><a href="#stile">2. Stile di tutoraggio</a></li><li><a href="#corso">3. Il tuo corso</a></li><li><a href="#assi">4. Guida, pianificazione e feedback</a></li><li><a href="#avanzate">5. Moduli avanzati e motore</a></li><li><a href="#identita">6. Identità pedagogica</a></li><li><a href="#distribuire">7. Consegnare il tutor</a></li><li><a href="#privacy">8. Dati e privacy</a></li></ol></nav><div><section id="iniziare"><h2><span class="n">1.</span>Prima di iniziare</h2><p>UPDAIT genera un prompt che trasforma una chat di intelligenza artificiale, come ChatGPT, Claude o Gemini, in un tutor dedicato al tuo corso. Compili il wizard, copi il prompt e lo condividi con gli studenti, che lo usano con il proprio account, anche gratuito.</p>
+<h3>Cosa tenere pronto</h3>
+<ul>
+<li>Gli argomenti su cui lavorerà il tutor, separati da virgole.</li>
+<li>I prerequisiti che gli studenti dovrebbero già avere.</li>
+<li>I materiali da cui il tutor deve partire: dispense, slide, capitoli, syllabus del corso. Nel wizard ne scriverai solo i nomi dei file.</li>
+<li>Un errore tipico degli studenti su un argomento chiave, e come di solito li aiuti a superarlo.</li>
+</ul>
+<p>Un tutor copre bene un modulo o un gruppo di argomenti affini. Per parti diverse del corso conviene generare tutor diversi, anche con stili diversi.</p>
+<h3>Rapida o Progetto guidato?</h3>
+<p><strong>Rapida</strong> chiede solo lo stile, l'area e i dati del corso, poi genera il prompt con impostazioni pedagogiche bilanciate. Richiede circa cinque minuti.</p>
+<p><strong>Progetto guidato</strong> percorre tutti i passaggi: come il tutor guida lo studente, quanto segue il programma, come corregge gli errori, quali supporti di inclusione attivare. Richiede quindici o venti minuti. Per il primo tutor è la scelta consigliata, anche solo per conoscere le leve disponibili.</p><a class="top" href="#top">Torna all'indice</a></section><section id="stile"><h2><span class="n">2.</span>Stile di tutoraggio</h2><p>Scegliere lo stile non significa scegliere un tono di voce. Significa decidere chi svolge il lavoro cognitivo: quando il tutor spiega e quando chiede, quanta parte della soluzione rivela, cosa fa quando lo studente si blocca. Nessuno stile è migliore in assoluto: dipende da dove si trovano i tuoi studenti rispetto all'argomento.</p>
+<h3>I cinque stili</h3>
+<p><strong>Esperto.</strong> Spiega prima e verifica dopo; lo studente rielabora ciò che riceve. Adatto a contenuti nuovi o a prerequisiti fragili.</p>
+<p><strong>Socratico.</strong> Non fornisce la soluzione ma la fa costruire con domande, lasciando allo studente il carico del ragionamento. Adatto quando le basi disciplinari ci sono già.</p>
+<p><strong>Coach.</strong> Lo studente sceglie i passi, il tutor sostiene strategia e motivazione. Adatto a chi si blocca per sfiducia più che per lacune.</p>
+<p><strong>Diagnostico.</strong> Parte dall'errore, lo isola, crea un conflitto cognitivo e solo dopo corregge. Adatto alle misconcezioni che resistono alla spiegazione ordinaria.</p>
+<p><strong>Architetto.</strong> Non ha una politica predefinita: le regole del dialogo le scrivi tu nel Manifesto (step 7). Serve quando nessuno degli altri quattro copre l'impianto che hai in mente.</p>
+<h3>Un consiglio</h3>
+<p>Lo stesso corso può avere più tutor: un Esperto nelle prime settimane, un Socratico o un Diagnostico in vista dell'esame. Tutti gli stili condividono alcune regole di fondo, per esempio non dare subito la soluzione a una domanda concettuale ma offrire indizi via via più specifici, e non assegnare voti.</p><a class="top" href="#top">Torna all'indice</a></section><section id="corso"><h2><span class="n">3.</span>Il tuo corso</h2><p>Questi due passaggi danno al tutor il contesto: senza, risponde come un assistente generico.</p>
+<h3>Area disciplinare (step 2)</h3>
+<p>Scegli l'area del corso di laurea. Orienta il lessico e il tipo di esempi che il tutor propone.</p>
+<h3>Dettagli del corso (step 3)</h3>
+<ul>
+<li><strong>Docente e materia</strong> compaiono nella presentazione del tutor agli studenti. La materia è obbligatoria.</li>
+<li><strong>Compila dal syllabus</strong>: nel riquadro verde carica il PDF del syllabus scaricato dal sito dell'Ateneo, che è la strada consigliata, oppure incolla il testo copiato dal PDF o dalla pagina in cui lo compili, con i titoli delle sezioni. Il PDF viene letto nel browser e non viene inviato; se è una scansione senza testo, incolla il testo a mano. Il wizard ne ricava gli argomenti, i prerequisiti e, se la sezione «Conoscenze e abilità da acquisire» segue i descrittori di Dublino, gli obiettivi di apprendimento. Se i contenuti sono divisi in moduli, ti chiede su quali lavorerà il tutor: un tutor funziona meglio su uno o due moduli, e per gli altri puoi crearne altri con «Nuovo argomento». Righe di stato, versione inglese e indirizzi email vengono scartati. Il testo incollato non viene salvato né inviato.</li>
+<li><strong>Argomenti specifici</strong>: almeno uno è obbligatorio, perché senza argomenti il tutor risponde come un assistente generico. Elencali separati da virgole, in forma sintetica (parole chiave, non il programma per intero). Il tutor li usa per proporre un percorso e per tenere traccia di cosa è stato affrontato.</li>
+<li><strong>Dati di altre persone</strong>: in nessun campo inserire nomi o dati di studenti o di altre persone. Tutto ciò che scrivi entra nel prompt, che gli studenti vedono, e nei dati della sperimentazione.</li>
+<li><strong>Prerequisiti</strong>: il tutor li usa per capire da dove partire e per accorgersi di lacune a monte.</li>
+<li><strong>Lingua del tutor</strong>: <em>Italiano</em> oppure <em>Inglese</em>. Con l'inglese il tutor scrive sempre in inglese, con la terminologia inglese della disciplina, anche se lo studente scrive in italiano. Per un corso con studenti italiani e internazionali genera due tutor dalla stessa configurazione: crea quello italiano, poi con «Riapri» cambia la lingua allo step 3 e copia il secondo prompt; su Moodle pubblicali entrambi, per esempio «Tutor del corso» e «Course tutor (English)». Le istruzioni del prompt restano in italiano: cambia solo la lingua in cui il tutor scrive.</li>
+<li><strong>Come si rivolge agli studenti</strong>: con il tu o con il lei, quando il tutor scrive in italiano. La scelta vale per tutte le risposte, compresi il menu iniziale e la chiusura.</li>
+<li><strong>Materiali</strong>: indica solo i nomi dei file su cui il tutor deve basarsi, non il loro contenuto. Il campo compare più volte nel prompt, anche nella presentazione che lo studente vede all'avvio, e un testo incollato qui lo allungherebbe oltre il limite dei progetti. All'avvio il tutor li indica allo studente e lo invita a caricarli; se non li trova, lo segnala una volta e prosegue con cautela, invitando a verificare dati e citazioni con le fonti del corso. Se lo studente usa un progetto, li carica lì una volta sola.</li>
+</ul>
+<h3>Opzioni avanzate</h3>
+<ul>
+<li><strong>Importanza e motivazione attesa</strong> aiutano il tutor a dosare incoraggiamento e ritmo.</li>
+<li><strong>Obiettivi di apprendimento</strong>: completa la frase "al termine della sessione lo studente dovrà...". Anche uno o due obiettivi bastano: il tutor li usa per ancorare le spiegazioni e scegliere le domande di verifica.</li>
+<li><strong>Esercizi di cui non dare la soluzione</strong>: indica per nome o numero gli esercizi che gli studenti devono svolgere da soli, per esempio quelli di un foglio o le prove d'esame degli anni precedenti. Il tutor non li risolve al posto loro: chiede il testo e dà un indizio sul metodo. In forma generale la regola vale comunque per gli esercizi assegnati nel corso.</li>
+<li><strong>Riepilogo anonimo</strong>: facoltativo. Ti dice dove gli studenti si bloccano e cosa li ha aiutati. Per attivarlo crea nel corso Moodle un'attività <em>Feedback</em>: nelle impostazioni scegli l'anonimato per i nomi degli utenti e consenti più invii, poi aggiungi una domanda «Risposta di testo lunga» con il testo «Incolla qui il riepilogo del tutor». Scrivi nel wizard il nome che hai dato all'attività.</li>
+</ul><a class="top" href="#top">Torna all'indice</a></section><section id="assi"><h2><span class="n">4.</span>Guida, pianificazione e feedback</h2><p>I tre slider regolano il comportamento del tutor lungo tre dimensioni indipendenti. Sotto ogni slider un'anteprima mostra come risponderebbe il tutor nella posizione scelta: è il modo più rapido per capire l'effetto di una regolazione.</p>
+<h3>Stile di guida (step 4)</h3>
+<p>Va da <strong>Istruzione diretta</strong> a <strong>Scoperta guidata</strong>. Verso sinistra il tutor spiega il principio e chiede di applicarlo; verso destra non dà la risposta e chiede allo studente di ragionare ad alta voce. La posizione centrale alterna brevi spiegazioni e domande di verifica. Lo slider parte dalla posizione coerente con lo stile scelto allo step 1, più verso l'istruzione diretta con l'Esperto e più verso la scoperta con il Socratico: spostalo solo se vuoi regolarne l'intensità.</p>
+<h3>Pianificazione (step 5)</h3>
+<p>Va da <strong>Rigido</strong> a <strong>Flessibile</strong>. Verso sinistra il tutor segue l'ordine degli argomenti senza deviazioni; verso destra lascia che sia lo studente a scegliere da dove partire e dove andare, collegando ogni tema agli obiettivi del corso. Una pianificazione più rigida si adatta ai corsi introduttivi, una più flessibile al ripasso e all'approfondimento.</p>
+<h3>Feedback (step 6)</h3>
+<p>Va da <strong>Correttivo</strong> a <strong>Metacognitivo</strong>. Verso sinistra il tutor segnala l'errore e dà la risposta corretta; verso destra chiede prima allo studente di valutare la propria risposta. Dalla posizione centrale in poi il tutor chiede allo studente di individuare il problema e poi completa con un feedback in tre parti: cosa hai detto, perché non è preciso, come ricordarlo. In ogni posizione l'errore viene comunque corretto.</p>
+<h3>Combinazioni da evitare</h3>
+<p>Alcune combinazioni mandano al modello segnali contraddittori: uno stile Socratico con lo slider della guida tutto verso l'istruzione diretta, uno stile Esperto tutto verso la scoperta guidata, uno stile Diagnostico con un feedback solo metacognitivo, che rimanda troppo la correzione della misconcezione. Allo step 9 il pulsante "Spiegami cosa fa il Tutor" riassume le scelte nella sezione Coerenza. Se una combinazione resta contraddittoria, il tutor segue lo stile scelto allo step 1: gli slider ne regolano l'intensità.</p><a class="top" href="#top">Torna all'indice</a></section><section id="avanzate"><h2><span class="n">5.</span>Moduli avanzati e motore</h2><p>Questi passaggi sono facoltativi. Attiva solo ciò che serve davvero: ogni modulo aggiunge regole al prompt, e un prompt più lungo viene seguito con meno precisione, soprattutto dai modelli gratuiti.</p>
+<h3>Inclusività e UDL (step 7)</h3>
+<p>Le opzioni generano regole operative concrete, non semplici dichiarazioni di intento. Scegli il formato in base alle esigenze che osservi e alle preferenze degli studenti, non a una diagnosi: lo studente può sempre chiedere un formato diverso, e il tutor non nomina mai condizioni personali.</p>
+<ul>
+<li><strong>Lettura facilitata</strong>: frasi di massimo 20 parole, niente subordinate annidate, termini chiave in grassetto, un concetto per blocco.</li>
+<li><strong>Linguaggio accessibile</strong>: vocabolario di base, definizione di ogni termine tecnico al primo uso, analogie concrete.</li>
+<li><strong>Spiegazione a blocchi</strong>: le spiegazioni lunghe sono divise in blocchi numerati con il totale ([1/3], [2/3]), ciascuno di al massimo tre frasi con un esempio e una domanda di verifica; il tutor attende la risposta prima del blocco successivo. Le domande di dialogo e le risposte brevi restano senza numerazione.</li>
+<li><strong>Struttura prevedibile e micro-obiettivi</strong>: struttura fissa con obiettivo, contenuto e riepilogo, e micro-obiettivi espliciti all'inizio di ogni risposta.</li>
+</ul>
+<h3>Altre opzioni dello step 7</h3>
+<ul>
+<li><strong>Manifesto dell'Architetto</strong>: visibile solo con lo stile Architetto; qui scrivi le regole del dialogo. Con l'Architetto è obbligatorio.</li>
+<li><strong>L'errore tipico dei tuoi studenti</strong>: vale con tutti gli stili. Scrivi l'errore che vedi più spesso, come lo riconosci da ciò che lo studente dice o fa, e cosa fai di solito quando lo vedi. Una mossa concreta, per esempio "propongo il disco da hockey che scivola sul ghiaccio e chiedo cosa lo farebbe fermare", è l'indicazione che il tutor segue con più precisione: nelle prove la eseguiva quasi alla lettera, mentre la sola descrizione dell'errore non cambiava il suo comportamento. È l'unico punto del wizard in cui si descrive l'errore tipico, e da qui parte anche la prova del tutor allo step 10.</li>
+<li><strong>Da dove prendi i tuoi esempi</strong>: indica gli ambiti da cui il tutor deve trarre esempi e analogie (casi clinici, cronaca economica, sport, laboratorio). Il campo Tono resta per il tono di voce.</li>
+<li><strong>Valutazione formativa e quiz</strong>: attiva il comando Quiz e il riepilogo /valutami (punti di forza, aree di miglioramento, prossimo obiettivo). Il tutor non assegna mai voti.</li>
+</ul>
+<h3>Parametri del motore (step 8)</h3>
+<ul>
+<li><strong>Check conversazionale</strong>: ogni quanti scambi il tutor chiede allo studente di fare il punto su ciò che ha capito. Il minimo è 3, perché più spesso la domanda interrompe il ragionamento invece di sostenerlo.</li>
+<li><strong>Adattività ai segnali</strong>: se attiva, il tutor riduce la complessità quando nota esitazioni o errori ripetuti.</li>
+<li><strong>Livello di ottimizzazione</strong>: risposte concise o dettagliate.</li>
+<li><strong>Supporto visivo</strong>: da nessuno a proattivo. Se lo attivi, il tutor crea un'immagine, su richiesta o di sua iniziativa secondo il livello scelto, quando la chat dello studente sa generarla; altrimenti usa una tabella o un elenco numerato, leggibili anche con un lettore di schermo. Gli studenti trovano anche il comando Disegna per chiedere uno schema.</li>
+</ul>
+<p>Nella maggior parte dei casi i valori predefiniti dello step 8 vanno bene.</p><a class="top" href="#top">Torna all'indice</a></section><section id="identita"><h2><span class="n">6.</span>Identità pedagogica</h2><p>Questo passaggio serve a far parlare il tutor con la tua voce invece che con quella, generica, di un assistente. Le risposte entrano nel prompt e orientano esempi, priorità e modo di spiegare.</p>
+<h3>Le domande</h3>
+<p><strong>Come vedi la tua materia.</strong> Completa la frase "la cosa che la maggior parte delle persone non capisce della mia disciplina è che in realtà si tratta di...". Il tutor userà questa prospettiva per dare un filo alle spiegazioni.</p>
+<p>L'errore tipico dei tuoi studenti si descrive allo step 7, non qui: lì indichi anche come lo riconosci e cosa fai quando lo vedi, ed è la descrizione che il tutor segue con più precisione. Se in un tutor salvato con una versione precedente lo avevi scritto qui, il riquadro ricompare con il tuo testo: il tutor lo usa ancora, ma conviene spostarlo allo step 7.</p>
+<p><strong>A cosa serve davvero il tuo corso.</strong> Spiegalo in due o tre frasi, come lo diresti a un familiare o a un amico, con le parole che useresti davvero e non con quelle del syllabus. Il tutor lo userà per motivare gli studenti e collegare i contenuti al loro senso.</p>
+<h3>Come scriverle</h3>
+<p>Bastano poche frasi, scritte come parleresti a uno studente. Sotto ogni domanda trovi alcuni spunti: cliccane uno per inserirlo, poi riscrivilo con parole tue; nei puntini va la tua materia. Esempi concreti funzionano meglio delle formule generali: "confondono pressione e portata perché nel linguaggio comune sono la stessa cosa" è molto più utile di "hanno difficoltà con i concetti fondamentali".</p><a class="top" href="#top">Torna all'indice</a></section><section id="distribuire"><h2><span class="n">7.</span>Consegnare il tutor</h2><p>Gli ultimi due passaggi chiudono il lavoro. Allo step 9, «Il tuo tutor», UPDAIT mostra come il tutor aprirà la sessione e prepara il prompt. Allo step 10, «Prova e distribuisci», provi il tutor con due messaggi e trovi i passi per pubblicarlo. La sezione Coerenza di "Spiegami cosa fa il tutor" controlla le scelte fatte nel wizard, non il comportamento del tutor: per quello serve la prova dello step 10.</p>
+<h3>Un solo prompt, due modi di usarlo</h3>
+<p>Il prompt funziona con gli account gratuiti di ChatGPT, Claude e Gemini, e anche in altre chat di intelligenza artificiale. Il modo consigliato è il progetto: lo studente incolla il prompt una sola volta nelle istruzioni di un progetto e carica lì i materiali del corso; ogni chat aperta nel progetto parte già come tutor, e per iniziare basta scrivere qualsiasi cosa, anche solo un saluto. Nel progetto istruzioni e materiali restano disponibili in ogni chat, mentre un prompt incollato in chat, dopo molti scambi, può uscire dalla memoria di lavoro del modello. In entrambi i casi nessun modello segue le regole alla perfezione per tutta la conversazione: per questo agli studenti si consiglia di ripartire con la Scheda di Ripresa quando il tutor cambia comportamento. L'alternativa è incollare il prompt come primo messaggio di una nuova chat: non richiede preparazione, ma conviene ripartire con una nuova chat dopo circa 30-40 scambi. Con Gemini, al posto del progetto, si può creare un Gem o una skill con il prompt. Se il prompt supera i 10.000 caratteri e lo studente lo incolla in una chat di ChatGPT, il testo viene convertito in allegato: in quel caso basta fare clic su «Mostra nel campo di testo» prima di inviare, oppure usare un progetto.</p>
+<h3>Prima di condividerlo</h3>
+<ol>
+<li>Allo step 9 premi "Spiegami cosa fa il tutor" e controlla la sintesi e la sezione Coerenza.</li>
+<li>Allo step 10 mettilo alla prova (è facoltativo e richiede pochi minuti): apri una nuova chat, possibilmente sulla piattaforma e con il tipo di account che useranno gli studenti, incolla il prompt e invia i due messaggi proposti. Il primo mostra come il tutor tratta l'errore tipico che hai indicato, il secondo come risponde a chi chiede la soluzione di un esercizio. Per ciascuno indichi se il tutor si è comportato come vorresti: Sì, In parte o No. Se vuoi, prova anche a chiedergli di ignorare le sue regole.</li>
+<li>Con «In parte» o «No» compare un suggerimento sullo step in cui intervenire. Prima di cambiare le scelte, ripeti la prova in una chat nuova: lo stesso modello può comportarsi in modo diverso da una prova all'altra.</li>
+</ol>
+<h3>Salvare e riprendere il tutor</h3>
+<p>Ogni volta che arrivi al prompt, il wizard salva la configurazione in questo browser. Per riprenderla scegli «Riprendi un tutor salvato» nella pagina iniziale: <strong>Riapri</strong> riporta al prompt, da cui puoi tornare a qualunque step cliccandone il numero nella barra in alto, per esempio per attivare la lettura facilitata e generare una seconda versione; <strong>Nuovo argomento</strong> tiene stile, impostazioni, supporti e identità e svuota i campi legati all'argomento. Per usarla su un altro computer, o per conservarla, scarica il file di configurazione o copiane il codice in un documento.</p>
+<h3>Dove pubblicarlo</h3>
+<p>Allo step 10 copia il prompt con "Copia prompt" e pubblicalo su Moodle, per esempio come pagina o come file di testo. Accanto al prompt aggiungi il link alla <a href="guida-studenti.html">Guida per gli studenti</a>, che spiega come avviarlo, a partire dal progetto; per un tutor in inglese, allo step 10 trovi il link alla guida in inglese. Ricorda agli studenti di caricare nel progetto anche le dispense e il syllabus del corso: il tutor li usa per collegare le risposte al programma e agli obiettivi.</p><a class="top" href="#top">Torna all'indice</a></section><section id="privacy"><h2><span class="n">8.</span>Dati e privacy</h2><h3>Cosa registra UPDAIT</h3>
+<p>Quando generi un tutor, UPDAIT registra le scelte di configurazione (stile, assi pedagogici, moduli attivi, area disciplinare), i dati del corso, il testo che scrivi nei campi del wizard (per esempio errore tipico, mossa, esempi, esercizi indicati, strategie) e il nome che inserisci come nome docente, per analizzare la sperimentazione e migliorare lo strumento. Puoi usare anche un nickname. Non inserire nei campi dati di studenti o di altre persone. I risultati sono riportati solo in forma aggregata. UPDAIT non raccoglie dati degli studenti e non vede le loro conversazioni con il tutor. Se fai la prova del tutor allo step 10, sono registrate anche le tue risposte (Sì, In parte, No), collegate al tutor generato e quindi anche al nome che hai indicato come nome docente (puoi usare un nickname). Per chiarimenti o per chiedere la rimozione dei tuoi dati: corrado.petrucco@unipd.it.</p>
+<h3>Le configurazioni salvate</h3>
+<p>La configurazione di un tutor resta nel tuo browser o nel file che scarichi: UPDAIT non la conserva altrove. Su un computer condiviso, eliminala da «Riprendi un tutor salvato» quando hai finito.</p>
+<h3>Il riepilogo anonimo</h3>
+<p>Se lo attivi (step 3, opzioni avanzate), dopo F il tutor prepara un breve riepilogo che lo studente può incollare in un'attività Feedback del corso Moodle. Il blocco non contiene dati personali, livelli o giudizi. Perché resti anonimo, nell'attività Feedback scegli l'opzione anonima; non usare un Compito o un Forum, che mostrano chi scrive. L'invio è volontario e non incide sulla valutazione. Nei corsi con pochi studenti l'anonimato è più debole: leggi i riepiloghi nel loro insieme.</p>
+<h3>Le piattaforme usate dagli studenti</h3>
+<p>Gli studenti usano il tutor con i propri account personali, su ChatGPT, Claude, Gemini o altre chat di intelligenza artificiale. Questi servizi non sono coperti da contratti dell'Università di Padova: per questo conviene ricordare agli studenti di non inserire dati personali propri o di altre persone.</p>
+<h3>I materiali del corso</h3>
+<p>I file che gli studenti caricano nel progetto o nella chat finiscono su questi servizi esterni. Indica quindi solo materiali di cui puoi autorizzare la diffusione: il syllabus è già pubblico, per dispense e slide decidi tu; escludi capitoli di manuali, articoli e immagini di terzi protetti dal diritto d'autore.</p><a class="top" href="#top">Torna all'indice</a></section></div></main>
+<footer><p>UPDAIT v22.19 · prof. C. Petrucco, Dipartimento FISPPA · corrado.petrucco@unipd.it</p><p>© 2025-2026 Corrado Petrucco, Università degli Studi di Padova. Tutti i diritti riservati.</p></footer>
+<script>
+(function(){var links=[].slice.call(document.querySelectorAll('nav a'));
+function mark(){var y=window.scrollY+80,cur=null;links.forEach(function(a){var s=document.querySelector(a.getAttribute('href'));if(s&&s.offsetTop<=y)cur=a;});links.forEach(function(a){a.classList.toggle('on',a===cur);});}
+window.addEventListener('scroll',mark);mark();})();
+</script>
+</body></html>
