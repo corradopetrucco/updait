@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png">
 <meta name="description" content="UPDAIT, Università di Padova: docenti che progettano tutor IA disciplinari.">
 <title>UPDAIT, sito di progetto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,6 +37,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 /* Barra superiore */
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-top:3px solid var(--accent);border-bottom:1px solid var(--line)}
 .topin{display:flex;align-items:center;gap:12px 20px;min-height:62px;flex-wrap:wrap;padding-block:6px}
+.brand-wrap{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-icon{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none}
 .brand{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);line-height:1.05}
 .brand .w{font-weight:300;font-size:1.45rem;letter-spacing:.02em}
 .brand .s{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:3px}
@@ -221,7 +224,7 @@ footer{border-top:1px solid var(--line)}
 
 <header class="top">
   <div class="wrap topin">
-    <a class="brand" href="#home" aria-label="UPDAIT, home"><span class="w">UPDAIT</span><span class="s"><b>U</b>niversità di <b>P</b>a<b>D</b>ova <b>AI</b> <b>T</b>utors</span></a>
+    <a class="brand-wrap" href="#home" aria-label="UPDAIT, home"><img class="brand-icon" src="img/updait-icona.jpg" alt="" width="40" height="40"><span class="brand"><span class="w">UPDAIT</span><span class="s"><b>U</b>niversità di <b>P</b>a<b>D</b>ova <b>AI</b> <b>T</b>utors</span></span></a>
     <nav class="main" id="nav" aria-label="Navigazione principale">
       <a href="#home">Home</a>
       <div class="has-sub" data-group="approccio">
