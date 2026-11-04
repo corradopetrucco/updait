@@ -88,6 +88,10 @@ ul.plain{margin:0 0 14px;padding-left:1.2em} ul.plain li{margin-bottom:6px}
 .acro{font-weight:300;font-size:clamp(.82rem,2.3vw,1.18rem);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:0 0 26px}
 .hero .claim{font-size:clamp(1.15rem,2.4vw,1.45rem);font-weight:300;color:var(--ink);max-width:40ch;margin:0 auto}
 .hero .btns{justify-content:center}
+.hero-in{display:flex;align-items:center;justify-content:center;gap:56px}
+.hero-text{min-width:0}
+.hero-img{width:300px;height:auto;border-radius:12px;flex:none}
+@media (max-width:860px){.hero-img{display:none}}
 
 /* Pulsanti */
 .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;align-items:center}
@@ -251,7 +255,8 @@ footer{border-top:1px solid var(--line)}
 
 <!-- ===================== HOME ===================== -->
 <section class="page" id="p-home">
-  <div class="hero"><div class="wrap">
+  <div class="hero"><div class="wrap hero-in">
+    <div class="hero-text">
     <span class="ver">Università di Padova · Faculty Development</span>
     <p class="word">UPDAIT</p>
     <p class="acro"><b>U</b>niversità di <b>P</b>a<b>D</b>ova <b>AI</b> <b>T</b>utors</p>
@@ -261,6 +266,8 @@ footer{border-top:1px solid var(--line)}
       <a class="btn" href="#progetto">Partecipa al progetto</a>
     </div>
     <p style="margin-top:18px"><a class="textlink" href="#approccio">Scopri l'approccio pedagogico →</a></p>
+    </div>
+    <img class="hero-img" src="img/updait-copertina.jpg" alt="" width="320" height="305">
   </div></div>
 
   <div class="sec"><div class="wrap">
@@ -293,7 +300,7 @@ footer{border-top:1px solid var(--line)}
   <div class="sec"><div class="wrap">
     <div class="col">
       <h2>In breve</h2>
-      <p>UPDAIT è nato come sperimentazione con circa 30 docenti ed è ora proposto come progetto d'Ateneo. Il docente usa un percorso guidato, il wizard UPDAIT, che gli pone domande sulla propria didattica e le traduce in un prompt pedagogico, cioè un testo strutturato che istruisce l'IA su come comportarsi con gli studenti. La stessa IA può aiutare o danneggiare l'apprendimento a seconda delle regole che segue: progettare quelle regole è un compito didattico, e spetta al docente.</p>
+      <p>UPDAIT è nato come sperimentazione con circa 30 docenti ed è ora proposto come progetto interdipartimentale. Il docente usa un percorso guidato, il wizard UPDAIT, che gli pone domande sulla propria didattica e le traduce in un prompt pedagogico, cioè un testo strutturato che istruisce l'IA su come comportarsi con gli studenti. La stessa IA può aiutare o danneggiare l'apprendimento a seconda delle regole che segue: progettare quelle regole è un compito didattico, e spetta al docente.</p>
     </div>
   </div></div>
 </section>
@@ -600,7 +607,7 @@ footer{border-top:1px solid var(--line)}
 <!-- ===================== PROGETTO ===================== -->
 <section class="page" id="p-progetto" data-group="progetto">
   <div class="pagehead"><div class="wrap">
-    <p class="eyebrow">UPDAIT di Ateneo</p>
+    <p class="eyebrow">Progetto interdipartimentale</p>
     <h1>Il progetto</h1>
     <p class="lead">Un percorso di Faculty Development per estendere UPDAIT ai dipartimenti e costruire una libreria di prompt didattici validati per area disciplinare.</p>
   </div></div>
