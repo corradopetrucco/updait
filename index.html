@@ -623,8 +623,8 @@ footer{border-top:1px solid var(--line)}
     <h2>Partecipare</h2>
     <p>La manifestazione di interesse è aperta a tutti i dipartimenti e le scuole. Hanno la precedenza gli insegnamenti con molti studenti (oltre 40-50), quelli in cui gli studenti chiedono più supporto e i docenti disponibili a seguire tutte le fasi, con attenzione alla varietà disciplinare.</p>
     <p><b>Impegno richiesto:</b> [ore e calendario da definire]. <b>Scadenza:</b> [da definire].</p>
-    <div class="btns"><a class="btn primary" href="mailto:corrado.petrucco@unipd.it?subject=UPDAIT%3A%20manifestazione%20di%20interesse&body=Gentile%20prof.%20Petrucco%2C%0A%0Avorrei%20manifestare%20il%20mio%20interesse%20a%20partecipare%20al%20progetto%20UPDAIT.%0A%0ANome%20e%20cognome%3A%0ADipartimento%3A%0AInsegnamento%20e%20corso%20di%20studio%3A%0ANumero%20indicativo%20di%20studenti%3A%0A%0ACordiali%20saluti">Manifesta il tuo interesse via email</a><a class="btn" href="#progetto">Compila il modulo</a></div>
-    <p class="small muted" style="margin-top:10px">Il pulsante apre il tuo programma di posta con un messaggio già predisposto. Se non si apre, scrivi a corrado.petrucco@unipd.it. [Collegare il pulsante "Compila il modulo" al Modulo Google]</p>
+    <div class="btns"><a class="btn primary" href="mailto:corrado.petrucco@unipd.it?subject=UPDAIT%3A%20manifestazione%20di%20interesse&body=Gentile%20prof.%20Petrucco%2C%0A%0Avorrei%20manifestare%20il%20mio%20interesse%20a%20partecipare%20al%20progetto%20UPDAIT.%0A%0ANome%20e%20cognome%3A%0ADipartimento%3A%0AInsegnamento%20e%20corso%20di%20studio%3A%0ANumero%20indicativo%20di%20studenti%3A%0A%0ACordiali%20saluti">Manifesta il tuo interesse via email</a><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSdy5dzQJXtWRvWvZqzDHRqO6Qc5qg8jP2GpvfHHY6tiub9Z5g/viewform" target="_blank" rel="noopener">Compila il modulo di iscrizione</a></div>
+    <p class="small muted" style="margin-top:10px">Il pulsante apre il tuo programma di posta con un messaggio già predisposto. Se non si apre, scrivi a corrado.petrucco@unipd.it. Il modulo di iscrizione si apre in una nuova scheda e non richiede un account Google.</p>
   </div></div></div>
   <div class="sec"><div class="wrap">
     <h2>Che cosa produrremo</h2>
@@ -721,7 +721,7 @@ footer{border-top:1px solid var(--line)}
 
 <footer><div class="wrap footin">
   <span>UPDAIT · Università di Padova · Dipartimento FISPPA</span>
-  <span>Testi del sito in licenza CC BY-NC-SA</span>
+  <span>Testi del sito in licenza CC BY-NC-SA<span id="visits" hidden> · Visite: <b id="visitsN" style="font-variant-numeric:tabular-nums"></b></span></span>
 </div></footer>
 
 <script>
@@ -760,6 +760,18 @@ footer{border-top:1px solid var(--line)}
     function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);}
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent="Copiato";},sel);}else sel();
   });
+})();
+
+/* Contatore visite GoatCounter (senza cookie) */
+(function(){
+  var GC="https://updaitprova.goatcounter.com";
+  if(location.protocol==="file:") return;
+  window.goatcounter={no_onload:true};
+  function count(){try{window.goatcounter.count({path:location.pathname+(location.hash||"#home")});}catch(e){}}
+  var sc=document.createElement("script");sc.async=true;sc.src="https://gc.zgo.at/count.js";sc.setAttribute("data-goatcounter",GC+"/count");
+  sc.onload=function(){count();window.addEventListener("hashchange",count);};
+  document.head.appendChild(sc);
+  fetch(GC+"/counter/TOTAL.json").then(function(r){return r.ok?r.json():null;}).then(function(j){if(j&&j.count){document.getElementById("visitsN").textContent=j.count;document.getElementById("visits").hidden=false;}}).catch(function(){});
 })();
 </script>
 
