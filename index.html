@@ -186,6 +186,30 @@ footer{border-top:1px solid var(--line)}
 .footin{padding-block:22px;font-size:.86rem;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
 .page{display:none} .page.active{display:block}
 @media (prefers-reduced-motion:no-preference){.page.active{animation:fade .2s ease-out}@keyframes fade{from{opacity:.5}to{opacity:1}}}
+.fig-svg{display:block;width:100%;height:auto;font-family:var(--sans);overflow:visible}
+.fig-svg .ax{stroke:var(--muted);stroke-width:1}
+.fig-svg .mean{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+.fig-svg .tick{fill:var(--muted);font-size:12px}
+.fig-svg .lab{fill:var(--text);font-size:13px}
+.fig-svg .lab.strong{fill:var(--accent);font-weight:500}
+.fig-svg .c0,.fig-svg .c1,.fig-svg .c2{fill:none;stroke-width:2}
+.fig-svg .c0{stroke:var(--muted);stroke-opacity:.55}
+.fig-svg .c1{stroke:var(--muted);stroke-dasharray:6 4}
+.fig-svg .c2{stroke:var(--accent);stroke-width:2.5}
+.fig-svg .mk{fill:var(--ink)}
+.fig-svg .note{fill:var(--ink);font-size:12px}
+.fig-svg .edge{stroke:var(--line);stroke-width:1.5}
+.fig-svg .dot{fill:var(--bg);stroke:var(--muted);stroke-width:1.5}
+.fig-svg .dot.acc{stroke:var(--accent);fill:var(--accent)}
+.fig-svg .nt{fill:var(--ink);font-size:13px;font-weight:500}
+.fig-svg .ns{fill:var(--muted);font-size:12px}
+.fig-svg .nt.acc,.fig-svg .ns.acc{fill:var(--accent)}
+.fig-svg .hd{fill:var(--ink);font-size:14px;font-weight:500}
+.fig-svg .shared{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5}
+.fig-svg .arrow{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:5 4}
+.fig-svg .ahd{fill:var(--accent)}
+.figbox{border:1px solid var(--line);border-radius:10px;padding:18px 16px 12px;background:var(--bg);overflow-x:auto}
+.figbox .fig-svg{min-width:560px}
 </style>
 </head>
 <body>
@@ -306,7 +330,14 @@ footer{border-top:1px solid var(--line)}
   <div class="sec"><div class="wrap">
     <div class="col">
       <p class="summary">L'IA può offrire supporto a tutti, sempre. Ma usata senza regole migliora gli esercizi e peggiora gli esami.</p>
-      <p>Negli insegnamenti con più di 50 studenti offrire un feedback immediato e personalizzato diventa praticamente impossibile, eppure la ricerca educativa lo riconosce come un fattore decisivo per il successo formativo. L'IA generativa sembra una risposta, perché è disponibile sempre e per tutti: il punto è capire a quali condizioni aiuta davvero.</p>
+      <p>Negli insegnamenti con più di 40-50 studenti offrire un feedback immediato e personalizzato diventa praticamente impossibile, eppure la ricerca educativa lo riconosce come un fattore decisivo per il successo formativo. L'IA generativa sembra una risposta, perché è disponibile sempre e per tutti: il punto è capire a quali condizioni aiuta davvero.</p>
+    </div>
+  </div></div>
+  <div class="sec" style="padding-top:0"><div class="wrap">
+    <h2 class="col">Tutor IA, ieri e oggi</h2>
+    <div class="grid two">
+      <figure><img src="img/tutor-prima-2023.jpg" alt="Illustrazione di un robot insegnante davanti a una classe: i sistemi di tutoring basati su script e regole, prima del 2023." loading="lazy" style="max-width:420px"><figcaption><b>Prima del 2023.</b> Sistemi basati su script e regole, con personalizzazione limitata e domini ristretti.</figcaption></figure>
+      <figure><img src="img/tutor-generativo.jpg" alt="Illustrazione di un agente pedagogico generativo che dialoga davanti a uno schermo." loading="lazy" style="max-width:420px"><figcaption><b>Tutor generativi.</b> Il dialogo è aperto in qualsiasi dominio, ma resta la tentazione di rispondere invece di insegnare a ragionare.</figcaption></figure>
     </div>
   </div></div>
   <div class="sec alt"><div class="wrap">
@@ -318,6 +349,7 @@ footer{border-top:1px solid var(--line)}
       <div class="fig"><span class="tagline up">Aumento</span><b>× 2</b><span class="d">guadagni di apprendimento più che doppi rispetto all'active learning in aula, in meno tempo (Kestin et al., 2025)</span></div>
       <div class="fig"><span class="tagline up">Aumento</span><b>+6,6</b><span class="d">punti di apprendimento con un tutor strutturato rispetto all'IA usata liberamente (Yang et al., 2026)</span></div>
     </div>
+    <figure class="col" style="margin-top:20px"><img src="img/bastani-2025-pnas.jpg" alt="Titolo dell'articolo di Bastani e colleghi su PNAS: Generative AI without guardrails can harm learning: Evidence from high school mathematics." loading="lazy" style="max-width:460px"></figure>
     <p class="small muted col" style="margin-top:12px">Sono studi su singoli corsi e su apprendimento a breve termine: indicano una direzione, non una garanzia. Bastani, H., et al. (2025), PNAS, 122(26), e2422633122 · Kestin, G., et al. (2025), Scientific Reports, 15, 17458 · Yang, S., Van Alstyne, M., & Dellarocas, C. (2026), preprint arXiv 2609.23958.</p>
   </div></div>
   <div class="sec"><div class="wrap">
@@ -340,6 +372,11 @@ footer{border-top:1px solid var(--line)}
       <p class="summary">Conta la qualità dell'interazione, non il fatto che il tutor sia una persona o una macchina.</p>
       <h2>Il problema dei 2 sigma, rivisto</h2>
       <p>Nel 1984 Benjamin Bloom osservò che gli studenti seguiti individualmente da un tutor superavano di circa due deviazioni standard quelli di una classe tradizionale. Le meta-analisi successive invitano alla prudenza: Nickow e colleghi (2020) stimano un effetto medio di circa 0,37 deviazioni standard. VanLehn (2011) ha mostrato che i sistemi di tutoring che lavorano passo per passo (d = 0,76) si avvicinano molto al tutoring umano (d = 0,79). Per UPDAIT i 2 sigma restano un orizzonte di riferimento, non una promessa.</p>
+      <figure style="margin:8px 0 18px"><div class="figbox"><svg class="fig-svg" viewBox="0 0 760 330" role="img" aria-labelledby="t2s d2s" xmlns="http://www.w3.org/2000/svg">
+<title id="t2s">Il problema dei 2 sigma di Bloom</title>
+<desc id="d2s">Tre distribuzioni dei risultati: lezione tradizionale, mastery learning spostata di una deviazione standard, tutoring individuale spostata di due deviazioni standard. Un segno indica l'effetto medio di circa 0,37 deviazioni standard stimato dalle meta-analisi.</desc>
+<line x1="60" y1="250" x2="730" y2="250" class="ax"/>
+<line x1="76.0" y1="250" x2="76.0" y2="255" class="ax"/><line x1="155.7" y1="250" x2="155.7" y2="255" class="ax"/><line x1="235.5" y1="250" x2="235.5" y2="255" class="ax"/><line x1="315.2" y1="250" x2="315.2" y2="255" class="ax"/><line x1="395.0" y1="250" x2="395.0" y2="255" class="ax"/><line x1="474.8" y1="250" x2="474.8" y2="255" class="ax"/><line x1="554.5" y1="250" x2="554.5" y2="255" class="ax"/><line x1="634.3" y1="250" x2="634.3" y2="255" class="ax"/><line x1="714.0" y1="250" x2="714.0" y2="255" class="ax"/><line x1="315.2" y1="94" x2="315.2" y2="250" class="mean"/><text x="315.2" y="272" text-anchor="middle" class="tick">0</text><line x1="395.0" y1="94" x2="395.0" y2="250" class="mean"/><text x="395.0" y="272" text-anchor="middle" class="tick">+1σ</text><line x1="474.8" y1="94" x2="474.8" y2="250" class="mean"/><text x="474.8" y="272" text-anchor="middle" class="tick">+2σ</text><path d="M60.0,249.1 L62.8,249.0 L65.6,248.9 L68.4,248.8 L71.2,248.6 L74.0,248.5 L76.8,248.3 L79.5,248.1 L82.3,247.9 L85.1,247.7 L87.9,247.4 L90.7,247.1 L93.5,246.9 L96.3,246.5 L99.1,246.2 L101.9,245.8 L104.7,245.4 L107.5,245.0 L110.2,244.5 L113.0,244.0 L115.8,243.4 L118.6,242.8 L121.4,242.2 L124.2,241.5 L127.0,240.7 L129.8,239.9 L132.6,239.1 L135.4,238.2 L138.2,237.2 L141.0,236.2 L143.8,235.1 L146.5,234.0 L149.3,232.8 L152.1,231.5 L154.9,230.1 L157.7,228.7 L160.5,227.2 L163.3,225.6 L166.1,223.9 L168.9,222.1 L171.7,220.3 L174.5,218.4 L177.2,216.4 L180.0,214.3 L182.8,212.2 L185.6,209.9 L188.4,207.6 L191.2,205.2 L194.0,202.8 L196.8,200.2 L199.6,197.6 L202.4,194.9 L205.2,192.1 L208.0,189.3 L210.8,186.4 L213.5,183.5 L216.3,180.5 L219.1,177.4 L221.9,174.3 L224.7,171.2 L227.5,168.1 L230.3,164.9 L233.1,161.7 L235.9,158.6 L238.7,155.4 L241.5,152.2 L244.3,149.1 L247.0,145.9 L249.8,142.8 L252.6,139.8 L255.4,136.8 L258.2,133.8 L261.0,131.0 L263.8,128.2 L266.6,125.5 L269.4,122.9 L272.2,120.4 L275.0,118.0 L277.8,115.7 L280.5,113.5 L283.3,111.5 L286.1,109.7 L288.9,107.9 L291.7,106.4 L294.5,105.0 L297.3,103.7 L300.1,102.7 L302.9,101.8 L305.7,101.1 L308.5,100.5 L311.2,100.2 L314.0,100.0 L316.8,100.0 L319.6,100.2 L322.4,100.6 L325.2,101.2 L328.0,101.9 L330.8,102.8 L333.6,103.9 L336.4,105.2 L339.2,106.6 L342.0,108.2 L344.8,109.9 L347.5,111.8 L350.3,113.8 L353.1,116.0 L355.9,118.3 L358.7,120.7 L361.5,123.2 L364.3,125.8 L367.1,128.6 L369.9,131.4 L372.7,134.2 L375.5,137.2 L378.2,140.2 L381.0,143.3 L383.8,146.4 L386.6,149.5 L389.4,152.7 L392.2,155.8 L395.0,159.0 L397.8,162.2 L400.6,165.4 L403.4,168.5 L406.2,171.7 L409.0,174.8 L411.8,177.9 L414.5,180.9 L417.3,183.9 L420.1,186.8 L422.9,189.7 L425.7,192.5 L428.5,195.3 L431.3,198.0 L434.1,200.6 L436.9,203.1 L439.7,205.6 L442.5,208.0 L445.2,210.3 L448.0,212.5 L450.8,214.6 L453.6,216.7 L456.4,218.7 L459.2,220.6 L462.0,222.4 L464.8,224.1 L467.6,225.8 L470.4,227.4 L473.2,228.9 L476.0,230.3 L478.8,231.7 L481.5,232.9 L484.3,234.1 L487.1,235.3 L489.9,236.4 L492.7,237.4 L495.5,238.3 L498.3,239.2 L501.1,240.1 L503.9,240.8 L506.7,241.6 L509.5,242.3 L512.2,242.9 L515.0,243.5 L517.8,244.0 L520.6,244.6 L523.4,245.0 L526.2,245.5 L529.0,245.9 L531.8,246.2 L534.6,246.6 L537.4,246.9 L540.2,247.2 L543.0,247.5 L545.8,247.7 L548.5,247.9 L551.3,248.1 L554.1,248.3 L556.9,248.5 L559.7,248.6 L562.5,248.8 L565.3,248.9 L568.1,249.0 L570.9,249.1 L573.7,249.2 L576.5,249.3 L579.2,249.4 L582.0,249.4 L584.8,249.5 L587.6,249.6 L590.4,249.6 L593.2,249.7 L596.0,249.7 L598.8,249.7 L601.6,249.8 L604.4,249.8 L607.2,249.8 L610.0,249.8 L612.8,249.9 L615.5,249.9 L618.3,249.9 L621.1,249.9 L623.9,249.9 L626.7,249.9 L629.5,249.9 L632.3,249.9 L635.1,250.0 L637.9,250.0 L640.7,250.0 L643.5,250.0 L646.2,250.0 L649.0,250.0 L651.8,250.0 L654.6,250.0 L657.4,250.0 L660.2,250.0 L663.0,250.0 L665.8,250.0 L668.6,250.0 L671.4,250.0 L674.2,250.0 L677.0,250.0 L679.8,250.0 L682.5,250.0 L685.3,250.0 L688.1,250.0 L690.9,250.0 L693.7,250.0 L696.5,250.0 L699.3,250.0 L702.1,250.0 L704.9,250.0 L707.7,250.0 L710.5,250.0 L713.3,250.0 L716.0,250.0 L718.8,250.0 L721.6,250.0 L724.4,250.0 L727.2,250.0 L730.0,250.0" class="c0"/><path d="M60.0,250.0 L62.8,250.0 L65.6,250.0 L68.4,250.0 L71.2,250.0 L74.0,250.0 L76.8,249.9 L79.5,249.9 L82.3,249.9 L85.1,249.9 L87.9,249.9 L90.7,249.9 L93.5,249.9 L96.3,249.9 L99.1,249.8 L101.9,249.8 L104.7,249.8 L107.5,249.8 L110.2,249.7 L113.0,249.7 L115.8,249.7 L118.6,249.6 L121.4,249.6 L124.2,249.5 L127.0,249.5 L129.8,249.4 L132.6,249.3 L135.4,249.2 L138.2,249.2 L141.0,249.1 L143.8,248.9 L146.5,248.8 L149.3,248.7 L152.1,248.5 L154.9,248.4 L157.7,248.2 L160.5,248.0 L163.3,247.8 L166.1,247.6 L168.9,247.3 L171.7,247.0 L174.5,246.7 L177.2,246.4 L180.0,246.0 L182.8,245.6 L185.6,245.2 L188.4,244.8 L191.2,244.3 L194.0,243.7 L196.8,243.2 L199.6,242.5 L202.4,241.9 L205.2,241.2 L208.0,240.4 L210.8,239.6 L213.5,238.7 L216.3,237.8 L219.1,236.8 L221.9,235.8 L224.7,234.6 L227.5,233.5 L230.3,232.2 L233.1,230.9 L235.9,229.5 L238.7,228.0 L241.5,226.5 L244.3,224.9 L247.0,223.2 L249.8,221.4 L252.6,219.5 L255.4,217.6 L258.2,215.5 L261.0,213.4 L263.8,211.2 L266.6,209.0 L269.4,206.6 L272.2,204.2 L275.0,201.7 L277.8,199.1 L280.5,196.4 L283.3,193.7 L286.1,190.9 L288.9,188.1 L291.7,185.1 L294.5,182.2 L297.3,179.2 L300.1,176.1 L302.9,173.0 L305.7,169.9 L308.5,166.7 L311.2,163.6 L314.0,160.4 L316.8,157.2 L319.6,154.0 L322.4,150.9 L325.2,147.7 L328.0,144.6 L330.8,141.5 L333.6,138.5 L336.4,135.5 L339.2,132.6 L342.0,129.8 L344.8,127.0 L347.5,124.3 L350.3,121.8 L353.1,119.3 L355.9,117.0 L358.7,114.8 L361.5,112.7 L364.3,110.7 L367.1,108.9 L369.9,107.3 L372.7,105.8 L375.5,104.4 L378.2,103.3 L381.0,102.3 L383.8,101.5 L386.6,100.8 L389.4,100.4 L392.2,100.1 L395.0,100.0 L397.8,100.1 L400.6,100.4 L403.4,100.8 L406.2,101.5 L409.0,102.3 L411.8,103.3 L414.5,104.4 L417.3,105.8 L420.1,107.3 L422.9,108.9 L425.7,110.7 L428.5,112.7 L431.3,114.8 L434.1,117.0 L436.9,119.3 L439.7,121.8 L442.5,124.3 L445.2,127.0 L448.0,129.8 L450.8,132.6 L453.6,135.5 L456.4,138.5 L459.2,141.5 L462.0,144.6 L464.8,147.7 L467.6,150.9 L470.4,154.0 L473.2,157.2 L476.0,160.4 L478.8,163.6 L481.5,166.7 L484.3,169.9 L487.1,173.0 L489.9,176.1 L492.7,179.2 L495.5,182.2 L498.3,185.1 L501.1,188.1 L503.9,190.9 L506.7,193.7 L509.5,196.4 L512.2,199.1 L515.0,201.7 L517.8,204.2 L520.6,206.6 L523.4,209.0 L526.2,211.2 L529.0,213.4 L531.8,215.5 L534.6,217.6 L537.4,219.5 L540.2,221.4 L543.0,223.2 L545.8,224.9 L548.5,226.5 L551.3,228.0 L554.1,229.5 L556.9,230.9 L559.7,232.2 L562.5,233.5 L565.3,234.6 L568.1,235.8 L570.9,236.8 L573.7,237.8 L576.5,238.7 L579.2,239.6 L582.0,240.4 L584.8,241.2 L587.6,241.9 L590.4,242.5 L593.2,243.2 L596.0,243.7 L598.8,244.3 L601.6,244.8 L604.4,245.2 L607.2,245.6 L610.0,246.0 L612.8,246.4 L615.5,246.7 L618.3,247.0 L621.1,247.3 L623.9,247.6 L626.7,247.8 L629.5,248.0 L632.3,248.2 L635.1,248.4 L637.9,248.5 L640.7,248.7 L643.5,248.8 L646.2,248.9 L649.0,249.1 L651.8,249.2 L654.6,249.2 L657.4,249.3 L660.2,249.4 L663.0,249.5 L665.8,249.5 L668.6,249.6 L671.4,249.6 L674.2,249.7 L677.0,249.7 L679.8,249.7 L682.5,249.8 L685.3,249.8 L688.1,249.8 L690.9,249.8 L693.7,249.9 L696.5,249.9 L699.3,249.9 L702.1,249.9 L704.9,249.9 L707.7,249.9 L710.5,249.9 L713.3,249.9 L716.0,250.0 L718.8,250.0 L721.6,250.0 L724.4,250.0 L727.2,250.0 L730.0,250.0" class="c1"/><path d="M60.0,250.0 L62.8,250.0 L65.6,250.0 L68.4,250.0 L71.2,250.0 L74.0,250.0 L76.8,250.0 L79.5,250.0 L82.3,250.0 L85.1,250.0 L87.9,250.0 L90.7,250.0 L93.5,250.0 L96.3,250.0 L99.1,250.0 L101.9,250.0 L104.7,250.0 L107.5,250.0 L110.2,250.0 L113.0,250.0 L115.8,250.0 L118.6,250.0 L121.4,250.0 L124.2,250.0 L127.0,250.0 L129.8,250.0 L132.6,250.0 L135.4,250.0 L138.2,250.0 L141.0,250.0 L143.8,250.0 L146.5,250.0 L149.3,250.0 L152.1,250.0 L154.9,250.0 L157.7,249.9 L160.5,249.9 L163.3,249.9 L166.1,249.9 L168.9,249.9 L171.7,249.9 L174.5,249.9 L177.2,249.9 L180.0,249.8 L182.8,249.8 L185.6,249.8 L188.4,249.8 L191.2,249.7 L194.0,249.7 L196.8,249.7 L199.6,249.6 L202.4,249.6 L205.2,249.5 L208.0,249.4 L210.8,249.4 L213.5,249.3 L216.3,249.2 L219.1,249.1 L221.9,249.0 L224.7,248.9 L227.5,248.8 L230.3,248.6 L233.1,248.5 L235.9,248.3 L238.7,248.1 L241.5,247.9 L244.3,247.7 L247.0,247.5 L249.8,247.2 L252.6,246.9 L255.4,246.6 L258.2,246.2 L261.0,245.9 L263.8,245.5 L266.6,245.0 L269.4,244.6 L272.2,244.0 L275.0,243.5 L277.8,242.9 L280.5,242.3 L283.3,241.6 L286.1,240.8 L288.9,240.1 L291.7,239.2 L294.5,238.3 L297.3,237.4 L300.1,236.4 L302.9,235.3 L305.7,234.1 L308.5,232.9 L311.2,231.7 L314.0,230.3 L316.8,228.9 L319.6,227.4 L322.4,225.8 L325.2,224.1 L328.0,222.4 L330.8,220.6 L333.6,218.7 L336.4,216.7 L339.2,214.6 L342.0,212.5 L344.8,210.3 L347.5,208.0 L350.3,205.6 L353.1,203.1 L355.9,200.6 L358.7,198.0 L361.5,195.3 L364.3,192.5 L367.1,189.7 L369.9,186.8 L372.7,183.9 L375.5,180.9 L378.2,177.9 L381.0,174.8 L383.8,171.7 L386.6,168.5 L389.4,165.4 L392.2,162.2 L395.0,159.0 L397.8,155.8 L400.6,152.7 L403.4,149.5 L406.2,146.4 L409.0,143.3 L411.8,140.2 L414.5,137.2 L417.3,134.2 L420.1,131.4 L422.9,128.6 L425.7,125.8 L428.5,123.2 L431.3,120.7 L434.1,118.3 L436.9,116.0 L439.7,113.8 L442.5,111.8 L445.2,109.9 L448.0,108.2 L450.8,106.6 L453.6,105.2 L456.4,103.9 L459.2,102.8 L462.0,101.9 L464.8,101.2 L467.6,100.6 L470.4,100.2 L473.2,100.0 L476.0,100.0 L478.8,100.2 L481.5,100.5 L484.3,101.1 L487.1,101.8 L489.9,102.7 L492.7,103.7 L495.5,105.0 L498.3,106.4 L501.1,107.9 L503.9,109.7 L506.7,111.5 L509.5,113.5 L512.2,115.7 L515.0,118.0 L517.8,120.4 L520.6,122.9 L523.4,125.5 L526.2,128.2 L529.0,131.0 L531.8,133.8 L534.6,136.8 L537.4,139.8 L540.2,142.8 L543.0,145.9 L545.8,149.1 L548.5,152.2 L551.3,155.4 L554.1,158.6 L556.9,161.7 L559.7,164.9 L562.5,168.1 L565.3,171.2 L568.1,174.3 L570.9,177.4 L573.7,180.5 L576.5,183.5 L579.2,186.4 L582.0,189.3 L584.8,192.1 L587.6,194.9 L590.4,197.6 L593.2,200.2 L596.0,202.8 L598.8,205.2 L601.6,207.6 L604.4,209.9 L607.2,212.2 L610.0,214.3 L612.8,216.4 L615.5,218.4 L618.3,220.3 L621.1,222.1 L623.9,223.9 L626.7,225.6 L629.5,227.2 L632.3,228.7 L635.1,230.1 L637.9,231.5 L640.7,232.8 L643.5,234.0 L646.2,235.1 L649.0,236.2 L651.8,237.2 L654.6,238.2 L657.4,239.1 L660.2,239.9 L663.0,240.7 L665.8,241.5 L668.6,242.2 L671.4,242.8 L674.2,243.4 L677.0,244.0 L679.8,244.5 L682.5,245.0 L685.3,245.4 L688.1,245.8 L690.9,246.2 L693.7,246.5 L696.5,246.9 L699.3,247.1 L702.1,247.4 L704.9,247.7 L707.7,247.9 L710.5,248.1 L713.3,248.3 L716.0,248.5 L718.8,248.6 L721.6,248.8 L724.4,248.9 L727.2,249.0 L730.0,249.1" class="c2"/><text x="303.3" y="86" text-anchor="end" class="lab">Lezione tradizionale</text><text x="395.0" y="70" text-anchor="middle" class="lab">Mastery learning</text><text x="486.7" y="86" text-anchor="start" class="lab strong">Tutoring individuale</text><path d="M344.8,284 l-6,10 h12 z" class="mk"/><text x="354.8" y="296" class="note">≈ 0,37σ: effetto medio del tutoring nelle meta-analisi (Nickow et al., 2020)</text><text x="730" y="326" text-anchor="end" class="tick">rendimento, in deviazioni standard (σ) rispetto alla lezione tradizionale</text></svg></div><figcaption>Rielaborazione della figura di Bloom (1984): la distribuzione dei risultati con il tutoring individuale si sposta di circa due deviazioni standard. Le meta-analisi successive stimano effetti più contenuti.</figcaption></figure>
     </div>
   </div></div>
   <div class="sec alt"><div class="wrap">
@@ -412,13 +449,29 @@ footer{border-top:1px solid var(--line)}
     <p>Un tutor IA opera dentro due sistemi di attività che condividono lo stesso oggetto, cioè l'apprendimento dello studente: nel primo lo studente lavora con l'IA, nel secondo il docente progetta e insegna. Nel punto di contatto nascono le contraddizioni (Engeström, 2001): la dipendenza dallo strumento, il calo di motivazione, il disallineamento tra ciò che l'IA spiega e ciò che il corso chiede, e l'incertezza del docente sul proprio ruolo (Crawford, Cowling e Allen, 2023).</p>
   </div></div></div>
   <div class="sec" style="padding-top:0"><div class="wrap"><div class="col">
-    <div class="ph">Schema dei due sistemi di attività: studente + IA e docente + IA, con l'oggetto condiviso al centro</div>
+    <figure><div class="figbox"><svg class="fig-svg" viewBox="0 0 900 510" role="img" aria-labelledby="tat dat" xmlns="http://www.w3.org/2000/svg">
+<title id="tat">Due sistemi di attività con un oggetto condiviso</title>
+<desc id="dat">A sinistra il sistema dello studente con il tutor IA, a destra il sistema del docente con il wizard. I due sistemi condividono l'oggetto, l'apprendimento dello studente. Il docente interviene sul sistema dello studente scrivendo le regole e la divisione del lavoro.</desc>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahd"/></marker></defs>
+<text x="220" y="22" text-anchor="middle" class="hd">Sistema 1 · studente + IA</text>
+<text x="680" y="22" text-anchor="middle" class="hd">Sistema 2 · docente + IA</text>
+<line x1="220" y1="80" x2="80" y2="380" class="edge"/><line x1="220" y1="80" x2="360" y2="380" class="edge"/><line x1="80" y1="380" x2="360" y2="380" class="edge"/><line x1="150" y1="230" x2="290" y2="230" class="edge"/><line x1="150" y1="230" x2="220.0" y2="380" class="edge"/><line x1="290" y1="230" x2="220.0" y2="380" class="edge"/><line x1="680" y1="80" x2="820" y2="380" class="edge"/><line x1="680" y1="80" x2="540" y2="380" class="edge"/><line x1="820" y1="380" x2="540" y2="380" class="edge"/><line x1="750" y1="230" x2="610" y2="230" class="edge"/><line x1="750" y1="230" x2="680.0" y2="380" class="edge"/><line x1="610" y1="230" x2="680.0" y2="380" class="edge"/>
+<line x1="290" y1="230" x2="378" y2="230" class="edge"/><line x1="522" y1="230" x2="610" y2="230" class="edge"/>
+<ellipse cx="450" cy="230" rx="72" ry="40" class="shared"/>
+<text x="450" y="225" text-anchor="middle" class="nt acc">Apprendimento</text>
+<text x="450" y="243" text-anchor="middle" class="nt acc">dello studente</text>
+<text x="450" y="290" text-anchor="middle" class="ns">oggetto condiviso</text>
+<circle cx="220" cy="80" r="5" class="dot "/><text x="220" y="50" text-anchor="middle" class="nt ">Strumento</text><text x="220" y="66" text-anchor="middle" class="ns ">tutor IA</text><circle cx="150" cy="230" r="5" class="dot "/><text x="138" y="228" text-anchor="end" class="nt ">Soggetto</text><text x="138" y="244" text-anchor="end" class="ns ">studente</text><circle cx="290" cy="230" r="5" class="dot "/><text x="290" y="200" text-anchor="middle" class="nt ">Oggetto</text><circle cx="80" cy="380" r="5" class="dot acc"/><text x="80" y="402" text-anchor="middle" class="nt acc">Regole</text><text x="80" y="418" text-anchor="middle" class="ns acc">che cosa il tutor</text><text x="80" y="433" text-anchor="middle" class="ns acc">può e non può fare</text><circle cx="220.0" cy="380" r="5" class="dot "/><text x="220.0" y="402" text-anchor="middle" class="nt ">Comunità</text><text x="220.0" y="418" text-anchor="middle" class="ns ">compagni, corso</text><circle cx="360" cy="380" r="5" class="dot acc"/><text x="360" y="402" text-anchor="middle" class="nt acc">Divisione del lavoro</text><text x="360" y="418" text-anchor="middle" class="ns acc">chi svolge il</text><text x="360" y="433" text-anchor="middle" class="ns acc">lavoro cognitivo</text><circle cx="680" cy="80" r="5" class="dot "/><text x="680" y="50" text-anchor="middle" class="nt ">Strumento</text><text x="680" y="66" text-anchor="middle" class="ns ">wizard UPDAIT, IA</text><circle cx="750" cy="230" r="5" class="dot "/><text x="762" y="228" text-anchor="start" class="nt ">Soggetto</text><text x="762" y="244" text-anchor="start" class="ns ">docente</text><circle cx="610" cy="230" r="5" class="dot "/><text x="610" y="200" text-anchor="middle" class="nt ">Oggetto</text><circle cx="820" cy="380" r="5" class="dot "/><text x="820" y="402" text-anchor="middle" class="nt ">Regole</text><text x="820" y="418" text-anchor="middle" class="ns ">programma,</text><text x="820" y="433" text-anchor="middle" class="ns ">norme d'Ateneo</text><circle cx="680.0" cy="380" r="5" class="dot "/><text x="680.0" y="402" text-anchor="middle" class="nt ">Comunità</text><text x="680.0" y="418" text-anchor="middle" class="ns ">colleghi,</text><text x="680.0" y="433" text-anchor="middle" class="ns ">corso di studio</text><circle cx="540" cy="380" r="5" class="dot "/><text x="540" y="402" text-anchor="middle" class="nt ">Divisione del lavoro</text><text x="540" y="418" text-anchor="middle" class="ns ">docente e tutor</text><path d="M640,478 C480,486 220,486 112,446" class="arrow" marker-end="url(#ah)"/>
+<path d="M640,478 C560,478 440,472 382,446" class="arrow" marker-end="url(#ah)"/>
+<text x="660" y="482" text-anchor="start" class="ns acc">il docente scrive regole</text><text x="660" y="497" class="ns acc">e divisione del lavoro</text>
+</svg></div><figcaption>Due sistemi di attività con un oggetto condiviso (rielaborazione da Engeström, 2001). Il docente interviene sulle regole e sulla divisione del lavoro del sistema dello studente.</figcaption></figure>
   </div></div></div>
   <div class="sec alt"><div class="wrap"><div class="col">
     <h2>La risposta di UPDAIT</h2>
     <p>Il docente rientra nel sistema dello studente scrivendone le regole, ovvero che cosa il tutor può e non può fare, e la divisione del lavoro, cioè chi svolge il lavoro cognitivo in ciascun momento della conversazione. Il prompt, in questo senso, non è un'istruzione tecnica ma un atto di progettazione didattica: il docente non delega il proprio ruolo alla macchina, lo esercita in una forma nuova.</p>
     <div class="acc"><details><summary><span>Perché l'Activity Theory<span class="sub2">Vygotskij, Leontiev, Engeström</span></span></summary><div>
       <p>Il riferimento è alla Activity Theory, che da Vygotskij (la mediazione degli strumenti culturali) passa per Leontiev (l'attività collettiva) e arriva a Engeström (i sistemi di attività in interazione). In ogni sistema si distinguono un soggetto, un oggetto, gli strumenti, le regole, la comunità e la divisione del lavoro.</p>
+      <figure style="margin:4px 0 16px"><img src="img/sistema-attivita-engestrom.jpg" alt="Il sistema di attività di Engeström: strumenti al vertice, soggetto e oggetto ai lati, regole, comunità e divisione del lavoro alla base, con le relazioni tra tutti gli elementi e il passaggio dall'oggetto ai risultati." loading="lazy"><figcaption>Il sistema di attività secondo Engeström.</figcaption></figure>
       <p>L'IA generativa pone a questa teoria una domanda aperta: l'Activity Theory distingue tra agenti sociali e strumenti, ma un'IA che si comporta in modo sociale ed è percepita come intenzionale non sta comodamente in nessuna delle due categorie. I confini tra il ruolo del docente e quello del tutor, del resto, si stavano già sfumando prima dell'IA generativa (Bray, 2021).</p>
     </div></details></div>
   </div></div></div>
@@ -554,21 +607,22 @@ footer{border-top:1px solid var(--line)}
   <div class="pagehead"><div class="wrap">
     <p class="eyebrow">UPDAIT di Ateneo</p>
     <h1>Il progetto</h1>
-    <p class="lead">Un percorso di Faculty Development di 12 mesi per estendere UPDAIT ai dipartimenti e costruire una libreria di prompt didattici validati per area disciplinare.</p>
+    <p class="lead">Un percorso di Faculty Development per estendere UPDAIT ai dipartimenti e costruire una libreria di prompt didattici validati per area disciplinare.</p>
   </div></div>
   <div class="sec"><div class="wrap">
     <h2>Le fasi</h2>
     <div class="phases">
-      <div class="phase"><span class="when">Fase A · autunno 2026</span><h3>Formazione</h3><p>Manifestazione di interesse e laboratorio pratico in cui ogni docente progetta il proprio tutor.</p></div>
-      <div class="phase"><span class="when">Fase B · inverno 2026-27</span><h3>Progettazione condivisa e validazione</h3><p>Gruppi disciplinari, sviluppo iterativo dei prompt, revisione tra pari con una rubrica comune.</p></div>
-      <div class="phase"><span class="when">Fase C · fino a giugno 2027</span><h3>Sperimentazione</h3><p>I tutor validati vengono usati negli insegnamenti; feedback volontario e anonimo degli studenti.</p></div>
+      <div class="phase"><span class="when">Fase A</span><h3>Formazione</h3><p>Manifestazione di interesse e laboratorio pratico in cui ogni docente progetta il proprio tutor.</p></div>
+      <div class="phase"><span class="when">Fase B</span><h3>Progettazione condivisa e validazione</h3><p>Gruppi disciplinari, sviluppo iterativo dei prompt, revisione tra pari con una rubrica comune.</p></div>
+      <div class="phase"><span class="when">Fase C</span><h3>Uso nei corsi</h3><p>I tutor validati vengono usati negli insegnamenti; feedback volontario e anonimo degli studenti.</p></div>
     </div>
   </div></div>
   <div class="sec alt"><div class="wrap"><div class="col">
     <h2>Partecipare</h2>
     <p>La manifestazione di interesse è aperta a tutti i dipartimenti e le scuole. Hanno la precedenza gli insegnamenti con molti studenti (oltre 40-50), quelli in cui gli studenti chiedono più supporto e i docenti disponibili a seguire tutte le fasi, con attenzione alla varietà disciplinare.</p>
     <p><b>Impegno richiesto:</b> [ore e calendario da definire]. <b>Scadenza:</b> [da definire].</p>
-    <div class="btns"><a class="btn primary" href="#progetto">Manifesta il tuo interesse</a></div>
+    <div class="btns"><a class="btn primary" href="mailto:corrado.petrucco@unipd.it?subject=UPDAIT%3A%20manifestazione%20di%20interesse&body=Gentile%20prof.%20Petrucco%2C%0A%0Avorrei%20manifestare%20il%20mio%20interesse%20a%20partecipare%20al%20progetto%20UPDAIT.%0A%0ANome%20e%20cognome%3A%0ADipartimento%3A%0AInsegnamento%20e%20corso%20di%20studio%3A%0ANumero%20indicativo%20di%20studenti%3A%0A%0ACordiali%20saluti">Manifesta il tuo interesse via email</a><a class="btn" href="#progetto">Compila il modulo</a></div>
+    <p class="small muted" style="margin-top:10px">Il pulsante apre il tuo programma di posta con un messaggio già predisposto. Se non si apre, scrivi a corrado.petrucco@unipd.it. [Collegare il pulsante "Compila il modulo" al Modulo Google]</p>
   </div></div></div>
   <div class="sec"><div class="wrap">
     <h2>Che cosa produrremo</h2>
@@ -591,7 +645,7 @@ footer{border-top:1px solid var(--line)}
     <div class="grid">
       <div class="item rule-top"><span class="k">Dati</span><h3>Nessun dato degli studenti</h3><p>UPDAIT non raccoglie dati degli studenti e non vede le loro conversazioni. Gli studenti usano il proprio account (modello BYOAI, Bring Your Own AI).</p></div>
       <div class="item rule-top"><span class="k">Trasparenza</span><h3>Il tutor si presenta</h3><p>Dichiara di essere configurato dal docente, di non sostituirlo e invita a verificare con i materiali del corso.</p></div>
-      <div class="item rule-top"><span class="k">Ricerca</span><h3>Le scelte del docente</h3><p>Le scelte fatte nel wizard sono registrate per analizzare la sperimentazione e migliorare lo strumento; il docente può chiederne la rimozione.</p></div>
+      <div class="item rule-top"><span class="k">Sperimentazione</span><h3>Le scelte del docente</h3><p>Le scelte fatte nel wizard sono registrate per analizzare la sperimentazione e migliorare lo strumento; il docente può chiederne la rimozione.</p></div>
     </div>
   </div></div>
   <div class="sec alt"><div class="wrap"><div class="col">
@@ -613,13 +667,13 @@ footer{border-top:1px solid var(--line)}
   </div></div>
   <div class="sec"><div class="wrap">
     <div class="people">
-      <div class="item rule-top person"><span class="role">Responsabile scientifico</span><h3>Corrado Petrucco</h3><p>Dipartimento FISPPA</p></div>
-      <div class="item rule-top person"><span class="role">Team</span><h3>Giorgio Satta</h3><p>Dipartimento di Ingegneria dell'Informazione (DEI)</p></div>
-      <div class="item rule-top person"><span class="role">Team</span><h3>Carlo Mariconda</h3><p>Dipartimento di Matematica "Tullio Levi-Civita" (DM)</p></div>
+      <div class="item rule-top person"><span class="role">Pedagogical Content Knowledge Expert</span><h3>Corrado Petrucco</h3><p>Dipartimento FISPPA<br><span class="small">corrado.petrucco@unipd.it</span></p></div>
+      <div class="item rule-top person"><span class="role">LLM AI Expert</span><h3>Giorgio Satta</h3><p>Dipartimento di Ingegneria dell'Informazione (DEI)<br><span class="small">[email da confermare]</span></p></div>
+      <div class="item rule-top person"><span class="role">UniPD Advisor on Digital Teaching</span><h3>Carlo Mariconda</h3><p>Dipartimento di Matematica "Tullio Levi-Civita" (DM)<br><span class="small">carlo.mariconda@unipd.it</span></p></div>
     </div>
     <div class="col" style="margin-top:36px">
       <h2>Contatti</h2>
-      <p><span id="mail">corrado.petrucco@unipd.it</span><button class="copy" id="copyMail" type="button">Copia</button></p>
+      <p>Per informazioni sul progetto scrivi a Corrado Petrucco: <span id="mail">corrado.petrucco@unipd.it</span><button class="copy" id="copyMail" type="button">Copia</button></p>
     </div>
   </div></div>
 </section>
@@ -648,7 +702,7 @@ footer{border-top:1px solid var(--line)}
         <li>VanLehn, K. (2011). Educational Psychologist.</li>
         <li>Wegerif, R., & Casebourne, I. (2025). British Journal of Educational Technology.</li>
         <li>Zimmerman, B. J. (2002). Becoming a Self-Regulated Learner.</li>
-      </ul><p class="small muted">[Completare con i riferimenti bibliografici completi; gli studi del 2026 sono nella pagina "Che cosa rende efficace un tutor"]</p></div></details>
+      </ul></div></details>
       <details><summary>Domande frequenti</summary><div>
         <h3>Servono competenze tecniche?</h3><p>No. Il docente risponde a domande sulla propria didattica; il wizard genera il prompt.</p>
         <h3>Gli studenti devono pagare?</h3><p>No. Il tutor funziona anche con gli account gratuiti di ChatGPT, Claude e Gemini.</p>
@@ -665,7 +719,7 @@ footer{border-top:1px solid var(--line)}
 
 <footer><div class="wrap footin">
   <span>UPDAIT · Università di Padova · Dipartimento FISPPA</span>
-  <span>Contenuti in licenza CC BY-NC-SA</span>
+  <span>Testi del sito in licenza CC BY-NC-SA</span>
 </div></footer>
 
 <script>
@@ -687,7 +741,7 @@ footer{border-top:1px solid var(--line)}
 
   var areas=[
     {k:"Scienze umane",d:"Psicologia dello sviluppo",s:"Il bambino di 4 anni non capisce che la quantità d'acqua resta uguale anche se cambia il contenitore.",g:"È nello stadio preoperatorio di Piaget, in cui manca la conservazione della quantità.",u:"Interessante osservazione. Che cosa pensi stia limitando la sua comprensione? Prova a immaginare come ragiona: su che cosa si concentra quando guarda i due bicchieri?",w:"Dopo la risposta dello studente",t:"La tua idea che il bambino guardi solo l'altezza dell'acqua richiama la centrazione in Piaget. Vygotskij leggerebbe però la scena in modo diverso: il limite sarebbe la mancanza di mediazione da parte di un adulto. Quale lettura ti convince di più, e perché?"},
-    {k:"STEM",d:"Equazioni differenziali",s:"Mi dai la soluzione di questa equazione differenziale? [segue l'esercizio]",g:"Separando le variabili e integrando si ottiene la soluzione generale [segue lo svolgimento completo].",u:"Prima di cominciare: che tipo di equazione è, e quale metodo hai già provato? Se ti blocchi su un passaggio, partiamo da quello.",w:"Quando lo studente ha impostato la separazione delle variabili",t:"Il metodo che hai scelto funziona bene qui. In quali casi, secondo te, smetterebbe di funzionare? È la domanda che ha portato ai metodi numerici."},
+    {k:"STEM",d:"Equazioni differenziali",s:"Mi dai la soluzione di questa equazione differenziale? [segue l'esercizio]",g:"Separando le variabili e integrando si ottiene la soluzione generale [segue lo svolgimento completo].",u:"Prima di cominciare: che tipo di equazione è, e quale metodo hai già provato? Se ti blocchi su un passaggio, partiamo da quello.",w:"Quando lo studente ha impostato la separazione delle variabili",t:"Il metodo che hai scelto funziona bene qui. In quali casi, secondo te, smetterebbe di funzionare? Da questa domanda partono anche i metodi numerici."},
     {k:"Area sanitaria",d:"Ragionamento clinico",s:"Nel caso del paziente con febbre, tosse e dolore toracico, qual è la diagnosi?",g:"Il quadro è compatibile con una polmonite [segue l'elenco degli esami].",u:"Quali ipotesi diagnostiche ti vengono in mente, e su quali elementi del caso le fondi? Se dovessi scegliere un solo esame per distinguere tra le prime due, quale richiederesti?",w:"Dopo la risposta",t:"Il tuo percorso è di tipo ipotetico-deduttivo. Come si confronta con il riconoscimento di schemi ricorrenti tipico dei clinici esperti? Per i casi del corso, verifica sempre con i materiali e con il docente."},
     {k:"Giurisprudenza",d:"Argomentazione",s:"Questo precedente si applica al caso che stiamo studiando?",g:"Sì, perché i due casi sono simili [segue la motivazione].",u:"Quali sono i fatti materiali rilevanti del precedente? E in che cosa il caso in esame se ne discosta?",w:"Dopo la risposta",t:"La tua lettura resta vicina al testo della norma. Come dialogherebbe con l'orientamento della giurisprudenza costituzionale più recente?"}
   ];
